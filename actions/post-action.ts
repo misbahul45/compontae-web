@@ -27,9 +27,15 @@ export const createPost=async(data:Partial<Post>)=>{
     }
 }
 
-export const getPostsByPublishedAt=async()=>{
+export const getPostsByPublishedAt=async({ no, limit }:{no?:number, limit?:number})=>{
     try {
-        const posts=await prisma.post.findMany({orderBy:{published:'desc'}})
+        const posts=await prisma.post.findMany({
+            orderBy:{
+                published:'desc'
+            },
+            skip:(no && no * 10),
+            take:limit || 10
+        })
         return posts
     } catch (error) {
         console.log(error)
