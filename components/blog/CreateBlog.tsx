@@ -17,39 +17,35 @@ import { createNotification } from '@/actions/notification-action';
 import { LoaderIcon, Plus } from 'lucide-react';
 import { sleep } from '@/lib/utils';
 
-
-export default function CreateBlog() {
-  const { data }=useSession()
-  
+const CreateBlog = () => {
+  const { data } = useSession();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState<string>('');
   const [image, setImage] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-
-  const router=useRouter()
+  const router = useRouter();
 
   React.useEffect(() => {
     if (data?.user?.role !== 'ADMIN') {
-      router.push('/')
-    } 
-  },[data, router])
+      router.push('/');
+    }
+  }, [data, router]);
 
-
-  const uploadPost = async() => {
-    setLoading(true)
-    sleep()
-    const isSucces=await createPost({title,image,description})
-    if(!isSucces){
-      toast.error('Failed to create post')
+  const uploadPost = async () => {
+    setLoading(true);
+    sleep();
+    const isSucces = await createPost({ title, image, description });
+    if (!isSucces) {
+      toast.error('Failed to create post');
       return;
     }
-    await createNotification('Create Post',`Membuat post ${title}`)
-    toast.success('Post created successfully!')
-    setDescription('')
-    setTitle('')
-    setImage('')
-    setLoading(false)
-    router.refresh()
+    await createNotification('Create Post', `Membuat post ${title}`);
+    toast.success('Post created successfully!');
+    setDescription('');
+    setTitle('');
+    setImage('');
+    setLoading(false);
+    router.refresh();
   };
 
   const handleRemoveImage = () => {
@@ -64,15 +60,15 @@ export default function CreateBlog() {
             <h3 className="text-lg font-semibold mb-4">Original Cover</h3>
             {image ? (
               <div className="space-y-4">
-                <AspectRatio ratio={16/9} className="bg-muted rounded-lg overflow-hidden">
-                  <Image 
-                    src={image} 
-                    alt="Original cover" 
+                <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
+                  <Image
+                    src={image}
+                    alt="Original cover"
                     fill
                     className="object-cover"
                   />
                 </AspectRatio>
-                <button 
+                <button
                   onClick={handleRemoveImage}
                   className="w-full px-4 py-2 text-sm text-red-600 border border-red-600 rounded-md hover:bg-red-50 transition-colors"
                 >
@@ -99,11 +95,11 @@ export default function CreateBlog() {
           <CardContent className="p-4">
             <h3 className="text-lg font-semibold mb-4">Preview</h3>
             <div className="bg-muted rounded-lg overflow-hidden">
-              <AspectRatio ratio={16/9}>
+              <AspectRatio ratio={16 / 9}>
                 {image ? (
-                  <Image 
-                    src={image} 
-                    alt="Preview" 
+                  <Image
+                    src={image}
+                    alt="Preview"
                     fill
                     className="object-cover"
                   />
@@ -119,21 +115,21 @@ export default function CreateBlog() {
       </div>
 
       <Separator className="my-8" />
-        <h3 className="text-lg font-semibold mb-4">Post Title</h3>
-        <div className="w-full px-2">
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder='Post Title'   />
-        </div>
-    
+      <h3 className="text-lg font-semibold mb-4">Post Title</h3>
+      <div className="w-full px-2">
+        <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Post Title" />
+      </div>
+
       <Separator className="my-8" />
-            
+
       <div className="space-y-6">
         <h3 className="text-lg font-semibold">Content Editor</h3>
         <Editor content={description} setContent={setDescription} />
-        <button 
-          onClick={uploadPost} 
+        <button
+          onClick={uploadPost}
           className="px-6 py-2 flex items-center bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
         >
-           {loading ? (
+          {loading ? (
             <LoaderIcon className="w-4 h-4 mr-2 animate-spin" />
           ) : (
             <Plus className="w-4 h-4 mr-2" />
@@ -143,4 +139,6 @@ export default function CreateBlog() {
       </div>
     </section>
   );
-}
+};
+
+export default CreateBlog;
