@@ -3,7 +3,7 @@ import { getPostsByPublishedAt } from "@/actions/post-action";
 import { Post as PostSchema } from "@/schema/post-types";
 import { useEffect, useState } from "react";
 import Post from "./Post";
-import { Loader2Icon } from "lucide-react";
+import { Loader } from "lucide-react";
 
 const ShowAllBlog = () => {
     const [popularPost, setPopularPost] = useState<PostSchema[]>([]);
@@ -27,9 +27,9 @@ const ShowAllBlog = () => {
         {popularPost?.map((post) => {
             return <Post key={post.id} title={post.title} date={post.published} slug={post.slug} content={post.description} image={post.image} />;
         })}
-        {popularPost.length===0 && <p>
-                <Loader2Icon className="animate-spin mr-2 h-4 w-4" />
-                <span>Loading...</span>
+        {popularPost.length===0 && <p className="flex text-center items-center gap-1 mt-12">
+                <Loader className="animate-spin mr-2 size-12" />
+                <span className="text-2xl font-semibold text-gray-400">Loading...</span>
             </p>}
     </div>
   )
