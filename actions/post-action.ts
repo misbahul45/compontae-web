@@ -26,3 +26,13 @@ export const createPost=async(data:Partial<Post>)=>{
         return false
     }
 }
+
+export const getPostsByPublishedAt=async()=>{
+    try {
+        const posts=await prisma.post.findMany({orderBy:{published:'desc'}})
+        return posts
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
