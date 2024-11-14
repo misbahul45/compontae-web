@@ -5,13 +5,8 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'as2.ftcdn.net',
-        pathname: '/**', // Ini sudah benar
-      },
-      {
-        protocol: 'https',
         hostname: 'utfs.io',
-        pathname: '/**', // Perbaiki typo di sini
+        pathname: '/**',
       },
     ],
   },
