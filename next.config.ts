@@ -6,12 +6,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'as2.ftcdn.net',
-        pathname: '/**',
+        pathname: '/**', // Ini sudah benar
       },
       {
         protocol: 'https',
         hostname: 'utfs.io',
-        patahname: '/**',
+        pathname: '/**', // Perbaiki typo di sini
       },
     ],
   },
