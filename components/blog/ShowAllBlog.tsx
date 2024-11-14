@@ -7,13 +7,13 @@ import { Loader } from "lucide-react";
 
 const ShowAllBlog = () => {
     const [popularPost, setPopularPost] = useState<PostSchema[]>([]);
-
+    const [no, setNo] = useState(0);
     useEffect(() => {
         const fetchPopularPost = async () => {
             try {
-                const posts = await getPostsByPublishedAt();
+                const posts = await getPostsByPublishedAt({no, limit:6});
                 if (posts) {
-                    setPopularPost(posts);
+                    setPopularPost((prev) => [...prev, ...posts]);
                 }   
             } catch (error) {
                 console.log(error);
@@ -30,7 +30,8 @@ const ShowAllBlog = () => {
         {popularPost.length===0 && <p className="flex text-center items-center gap-1 mt-12">
                 <Loader className="animate-spin mr-2 size-12" />
                 <span className="text-2xl font-semibold text-gray-400">Loading...</span>
-            </p>}
+            </p>
+        }
     </div>
   )
 }

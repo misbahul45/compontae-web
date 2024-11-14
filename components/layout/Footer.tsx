@@ -34,7 +34,7 @@ const Footer = () => {
                 <h1 className='text-3xl font-bold text-white'>Social Media</h1>
                 <ul className='text-lg text-white'>
                     <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'/'}>Whatsapp</Link></li>
-                    <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'/'}>Instagram</Link></li>
+                    <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'/https://www.instagram.com/compontae.id/'}>Instagram</Link></li>
                 </ul>
             </div>
         </div>

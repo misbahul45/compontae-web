@@ -133,7 +133,7 @@ export const LIST_CONTACT=[
     {
         id:3,
         title:"Instagram",
-        desc:"@composplantae"
+        desc:"@compontae.id"
     }
 ]
 
