@@ -42,3 +42,7 @@ export const getPostsByPublishedAt=async({ no, limit }:{no?:number, limit?:numbe
         return null
     }
 }
+
+export const getLengthAllPosts=async()=>{
+    return await prisma.post.count()
+}

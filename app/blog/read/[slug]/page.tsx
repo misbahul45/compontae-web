@@ -45,6 +45,7 @@ const page = async({ params }: PageProps) => {
         _count: 'desc',
       },
     },
+    take:5
   })
 
   if(!post) return notFound()
@@ -58,8 +59,8 @@ const page = async({ params }: PageProps) => {
         <div dangerouslySetInnerHTML={{ __html: post?.description as string }}/>
       </div>
       <Separator />
-      <div>
-        <h1 className='mb-4 lg:text-4xl md:text-3xl text-xl font-bold text-center'>Post Terpopuler</h1>
+      <div className='space-y-4 w-full max-w-3xl mx-auto'>
+        <h1 className='lg:text-4xl md:text-3xl text-xl font-bold text-center'>Post Terpopuler</h1>
         {popularPost.map((post) => {
           return <Post key={post.id} title={post.title} date={post.published} slug={post.slug} content={post.description} image={post.image} />;
         })}
