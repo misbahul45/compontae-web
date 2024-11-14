@@ -5,8 +5,8 @@ import React from 'react'
 const Footer = () => {
   return (
     <footer className='relative w-full bg-green-700 pt-24'>
-        <div className='w-[80%] absolute left-1/2 -top-20 -translate-x-1/2 bg-white rounded-lg flex md:gap-4 gap-2 items-center lg:pl-16 md:pl-12 px-4'>
-            <Image src={'/logo-2.png'} alt="Compontae Logo" width={150} height={150} className='rounded-full size-24 md:size-48' />
+        <div className='w-[80%] absolute left-1/2 -top-20 -translate-x-1/2 bg-white rounded-lg flex md:gap-4 gap-2 items-center lg:pl-16 md:pl-12 px-4 shadow-xl shadow-black/20'>
+            <Image src={'/logo-2.png'} alt="Compontae Logo" width={100} height={100} className='rounded-full size-24 md:size-44' />
             <div>
                 <h1 className='lg:text-4xl md:text-2xl text-xl font-bold'>Butuh Bantuan?</h1>
                 <Link href={'mailto:'} className='lg:text-2xl md:text-xl text-lg  text-green-400 font-semibold'>Hubungi Kami</Link>
@@ -34,7 +34,7 @@ const Footer = () => {
                 <h1 className='text-3xl font-bold text-white'>Social Media</h1>
                 <ul className='text-lg text-white'>
                     <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'/'}>Whatsapp</Link></li>
-                    <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'/https://www.instagram.com/compontae.id/'}>Instagram</Link></li>
+                    <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'https://www.instagram.com/compontae.id/'}>Instagram</Link></li>
                 </ul>
             </div>
         </div>
