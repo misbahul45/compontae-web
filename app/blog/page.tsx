@@ -6,9 +6,7 @@ import React from 'react'
 const page = async() => {
   const popularPost=await prisma.post.findMany({
     orderBy: {
-      Comment: {
-        _count: 'desc',
-      }
+      published: 'desc',
     },
   })
 
