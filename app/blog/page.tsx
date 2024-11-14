@@ -1,5 +1,5 @@
 import Carrousel from '@/components/blog/Carrousel'
-import ShowAllBlog from '@/components/blog/showAllBlog'
+import ShowAllBlog from '@/components/blog/ShowAllBlog'
 import React from 'react'
 
 const page = async() => {
