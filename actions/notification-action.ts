@@ -19,6 +19,14 @@ export const getAllNotification=async()=>{
     return await prisma.notification.findMany({})
 }
 
-export const deletAllNotification=async()=>{
-    await prisma.notification.deleteMany({})
+export const deletAllNotification=async(userEmail?:string)=>{
+    await prisma.notification.deleteMany({
+        where:{
+            userEmail,
+            OR:[
+                {userEmail:null},
+                {postId:null}
+            ]
+        }
+    })
 }

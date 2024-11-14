@@ -74,12 +74,13 @@ model VerificationToken {
 }
 
 model Post {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  description String
-  slug        String   @unique
-  image       String
-  published   DateTime @default(now())
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  slug         String         @unique
+  image        String
+  published    DateTime       @default(now())
+  notification Notification[]
 
   Comment Comment[]
 
@@ -109,6 +110,8 @@ model Notification {
   body      String
   toUser    User?   @relation(fields: [userEmail], references: [email], onDelete: NoAction, onUpdate: NoAction)
   userEmail String?
+  post      Post?   @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  postId    String? @db.ObjectId
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
