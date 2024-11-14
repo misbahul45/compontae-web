@@ -36,7 +36,8 @@ const CreateBlog = () => {
   const uploadPost = async () => {
     setLoading(true);
     sleep();
-    const isSucces = await createPost({ title, image, description });
+    const cleanDescription = description.replace(/<p data-f-id="pbf"[^>]*>.*<\/p>/gi, "");
+    const isSucces = await createPost({ title, image, description: cleanDescription });
     if (!isSucces) {
       toast.error('Failed to create post');
       return;
