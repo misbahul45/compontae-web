@@ -4,7 +4,24 @@ import { OrganizationChart } from 'primereact/organizationchart';
 import Image from 'next/image';
 
 export default function TeamChart() {
-  const [data] = useState([
+  const [data] = useState<{
+    label: string;
+    expanded: boolean;
+    data: string;
+    img: string;
+    children?: {
+      label: string;
+      expanded: boolean;
+      data: string;
+      img: string;
+      children?: {
+        label: string;
+        expand: boolean;
+        data: string;
+        img: string;
+      }[];
+    }[];
+  }[]>([
     {
       label: 'Leader Program',
       expanded: true,
@@ -55,7 +72,15 @@ export default function TeamChart() {
     },
   ]);
 
-  const nodeTemplate = (node: any) => {
+  interface Node {
+    label: string;
+    expanded: boolean;
+    data: string;
+    img: string;
+    children?: Node[];
+  }
+
+  const nodeTemplate = (node:Node) => {
     return (
       <div className="flex flex-col items-center w-full max-w-xs">
         <Image

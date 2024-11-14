@@ -1,7 +1,6 @@
 import { komposGuide } from '@/constants';
 import React from 'react';
 import { AccordionItem,Accordion, AccordionTrigger, AccordionContent } from '../ui/accordion';
-import { ChevronDownIcon } from 'lucide-react';
 
 interface Props {
   ref: React.RefObject<HTMLDivElement> | null;

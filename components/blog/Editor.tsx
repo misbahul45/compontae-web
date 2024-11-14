@@ -24,7 +24,7 @@ const Editor = ({ content, setContent }: Props) => {
             height: 500,
             fontSize: ['8', '9', '10', '11', '12', '14', '18', '24', '30', '36', '48', '60', '72', '96'],
             toolbarButtons: [
-              'paragraphFormat','bold', 'italic', 'underline', 'strikeThrough', '|',
+              'bold', 'italic', 'underline', 'strikeThrough', '|',
               'fontSize', 'fontFamily', 'textColor','|',
               'formatUL', 'formatOL', 'insertLink', '|',
               'codeView', 'html', 'undo', 'redo', 'clearFormatting', '|',

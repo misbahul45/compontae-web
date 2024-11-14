@@ -5,19 +5,32 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 import { Button } from '../ui/button';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+const HelpSchema=z.object({
+    username:z.string(),
+    email:z.string().email(),
+    message:z.string().min(10),
+})
 
 const FormHelp = () => {
-    const form = useForm();
+    const form = useForm<z.infer<typeof HelpSchema>>({
+        resolver:zodResolver(HelpSchema),
+        defaultValues: {
+            username: '',
+            email: '',
+            message: '',
+        },
+    })
 
-    const onSubmit = (data: any) => {
+    const onSubmit = (data: z.infer<typeof HelpSchema>) => {
         console.log(data);
     };
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
-                
-                {/* Row 1: Username and Email */}
                 <div className="flex gap-4 w-full">
                     <FormField
                         control={form.control}
@@ -44,8 +57,6 @@ const FormHelp = () => {
                         )}
                     />
                 </div>
-                
-                {/* Message Textarea */}
                 <FormField
                     control={form.control}
                     name="message"

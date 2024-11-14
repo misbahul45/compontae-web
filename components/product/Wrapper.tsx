@@ -14,7 +14,6 @@ const Wrapper = ({ item }:Props) => {
   const superiorityRef=React.useRef<null | HTMLDivElement>(null)
   const guideRef=React.useRef<null | HTMLDivElement>(null)
   
-
   React.useEffect(()=>{
     if(item==="buy"){
       buyRef.current?.classList.replace("bg-green-500","bg-red-500")

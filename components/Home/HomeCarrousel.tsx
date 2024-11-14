@@ -1,6 +1,5 @@
 'use client';
 import { MANFAAT_PRODUK } from '@/constants';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import React from 'react';
 
 const HomeCarrousel = () => {

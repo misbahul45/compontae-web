@@ -1,16 +1,16 @@
 'use client'
 import React from 'react'
 import dynamic from 'next/dynamic'
-import { MANFAAT_PRODUK, TUJUAN_PRODUK } from '@/constants'
+import { TUJUAN_PRODUK } from '@/constants'
 import Item from './Item'
 import { Leaf, Briefcase, Globe, Recycle } from "lucide-react";
 
 const ChartSampah= dynamic(() => import('./ChartSampah'), { ssr: false })
 const icons=[
-    <Leaf className='text-green-500 lg:size-16 md:size-12 size-8' />,
-    <Briefcase className='text-green-500 lg:size-16 md:size-12 size-8' />,
-    <Globe className='text-green-500 lg:size-16 md:size-12 size-8' />,
-    <Recycle className='text-green-500 lg:size-16 md:size-12 size-8' />
+    <Leaf key={1} className='text-green-500 lg:size-16 md:size-12 size-8' />,
+    <Briefcase key={2} className='text-green-500 lg:size-16 md:size-12 size-8' />,
+    <Globe key={3} className='text-green-500 lg:size-16 md:size-12 size-8' />,
+    <Recycle key={4} className='text-green-500 lg:size-16 md:size-12 size-8' />
   ]
 
 const AboutSection = () => {

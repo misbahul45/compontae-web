@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react"
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import { Toaster } from "react-hot-toast";
@@ -20,7 +19,6 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  ...props
 }: Readonly<{
   children: React.ReactNode;
 }>) {

@@ -17,9 +17,9 @@ export async function generateMetadata({ params}: Props) {
   }
 }
 
-const page = ({ params }:Props) => {
+const page = async({ params }:Props) => {
 
-  const { item }=React.use<ParamsType>(params)
+  const { item }=await params
 
   return (
     <Wrapper item={item} />

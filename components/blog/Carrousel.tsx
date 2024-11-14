@@ -8,7 +8,6 @@ import {
 } from "../ui/carousel";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
-import { AspectRatio } from "../ui/aspect-ratio";
 import { carouselItems } from "@/constants";
 
 const Carrousel = () => {
