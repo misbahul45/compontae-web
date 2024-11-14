@@ -27,18 +27,21 @@ const ShowAllBlog = () => {
         fetchLengthPosts();
     }, []);
 
-    // Fetch Popular Posts
     useEffect(() => {
         const fetchPopularPost = async () => {
             setIsLoading(true);
             try {
                 const posts = await getPostsByPublishedAt({ no, limit: LIMIT });
                 if (posts && posts.length > 0) {
-                    // Menghindari duplikasi berdasarkan ID post
                     const uniquePosts = posts.filter(
                         (post) => !popularPost.some((p) => p.id === post.id)
                     );
-                    setPopularPost((prev) => [...prev, ...uniquePosts]);
+                    setPopularPost((prev) => {
+                        const allPosts = [...prev, ...uniquePosts];
+                        const postMap = new Map(allPosts.map((post) => [post.id, post]));
+                        const uniquePostsById = Array.from(postMap.values());
+                        return uniquePostsById;
+                    });                    
                 }
             } catch (error) {
                 console.error("Failed to fetch posts:", error);
