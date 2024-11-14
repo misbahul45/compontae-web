@@ -1,5 +1,6 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import 'froala-editor/js/plugins.pkgd.min.js';
 import 'froala-editor/js/languages/id.js';
 import { UploadDropzone } from '@/lib/uploadthing';
@@ -25,7 +26,8 @@ const CreateBlog = () => {
   const [description, setDescription] = useState<string>('');
   const router = useRouter();
 
-  React.useEffect(() => {
+  // Ensure client-side code runs only after component mount
+  useEffect(() => {
     if (data?.user?.role !== 'ADMIN') {
       router.push('/');
     }

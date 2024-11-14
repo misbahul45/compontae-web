@@ -5,16 +5,15 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
-interface ParamsType {
-  slug: string
-}
-interface Props {
-  params:ParamsType
+interface PageProps {
+  params:Promise<{
+    slug:string
+  }>
 }
 
 
-const page = async({ params }: Props) => {
-  const { slug }=params
+const page = async({ params }: PageProps) => {
+  const { slug }=await params
   const cleanSlug = slug.toLowerCase().replace(/[^\w\s-]/g, '');
   const post=await prisma.post.findUnique({
     where:{

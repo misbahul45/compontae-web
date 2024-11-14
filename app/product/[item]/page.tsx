@@ -6,18 +6,18 @@ interface ParamsType {
   item: string
 }
 
-interface Props{
+interface PageProps{
   params:Promise<ParamsType>
 }
 
-export async function generateMetadata({ params}: Props) {
+export async function generateMetadata({ params }: PageProps) {
   const { item }=await params
   return {
     title: item+" - Compontae",
   }
 }
 
-const page = async({ params }:Props) => {
+const page = async({ params }:PageProps) => {
 
   const { item }=await params
 

@@ -1,11 +1,11 @@
-import CreateBlog from '@/components/blog/CreateBlog'
+import Wrapper from '@/components/blog/Wrapper';
 import React from 'react'
 
 const page = () => {
   return (
-    <>
-        <CreateBlog />
-    </>
+    <div className='w-full'>
+        <Wrapper />
+    </div>
   )
 }
 
