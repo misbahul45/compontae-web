@@ -36,19 +36,24 @@ const CreateBlog = () => {
   const uploadPost = async () => {
     setLoading(true);
     sleep();
-    const cleanDescription = description.replace(/<p data-f-id="pbf"[^>]*>.*<\/p>/gi, "");
-    const isSucces = await createPost({ title, image, description: cleanDescription });
-    if (!isSucces) {
-      toast.error('Failed to create post');
-      return;
+    try {
+        const cleanDescription = description.replace(/<p data-f-id="pbf"[^>]*>.*<\/p>/gi, "");
+        const isSucces = await createPost({ title, image, description: cleanDescription });
+        if (!isSucces) {
+          toast.error('Failed to create post');
+          return;
+        }
+        await createNotification('Create Post', `Membuat post ${title}`);
+        toast.success('Post created successfully!');
+        setDescription('');
+        setTitle('');
+        setImage('');
+    } catch (error) {
+        toast.error('Failed to create post'+error);
+    }finally{
+        setLoading(false);
+        router.refresh();
     }
-    await createNotification('Create Post', `Membuat post ${title}`);
-    toast.success('Post created successfully!');
-    setDescription('');
-    setTitle('');
-    setImage('');
-    setLoading(false);
-    router.refresh();
   };
 
   const handleRemoveImage = () => {
