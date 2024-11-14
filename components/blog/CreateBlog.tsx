@@ -17,6 +17,7 @@ import Editor from '@/components/blog/Editor';
 import { createNotification } from '@/actions/notification-action';
 import { LoaderIcon, Plus } from 'lucide-react';
 import { sleep } from '@/lib/utils';
+import { Button } from '../ui/button';
 
 const CreateBlog = () => {
   const { data } = useSession();
@@ -133,7 +134,8 @@ const CreateBlog = () => {
       <div className="space-y-6">
         <h3 className="text-lg font-semibold">Content Editor</h3>
         <Editor content={description} setContent={setDescription} />
-        <button
+        <Button
+          disabled={loading}
           onClick={uploadPost}
           className="px-6 py-2 flex items-center bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
         >
@@ -143,7 +145,7 @@ const CreateBlog = () => {
             <Plus className="w-4 h-4 mr-2" />
           )}
           {loading ? 'Creating...' : 'Create Post'}
-        </button>
+        </Button>
       </div>
     </section>
   );
