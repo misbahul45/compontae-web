@@ -27,7 +27,6 @@ const CreateBlog = () => {
   const [description, setDescription] = useState<string>('');
   const router = useRouter();
 
-  // Ensure client-side code runs only after component mount
   useEffect(() => {
     if (data?.user?.role !== 'ADMIN') {
       router.push('/');

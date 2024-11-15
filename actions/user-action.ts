@@ -2,7 +2,7 @@
 import { signIn } from "@/auth"
 import prisma from "@/lib/db"
 import UserSchema from "@/schema/user-schema"
-import { UserLoginType, UserRegisterType } from "@/schema/user-types"
+import { UserEdit, UserLoginType, UserRegisterType } from "@/schema/user-types"
 import bcrypt from "bcryptjs"
 
 export const createUser=async(userRegister:UserRegisterType)=>{
@@ -38,4 +38,42 @@ export const loginUser=async(userLogin:UserLoginType)=>{
     if(!user) return null
 
     return user
+}
+
+export const updateUser=async(user:UserEdit)=>{
+  try {
+    const password=user.password as string
+    if(password!==''){
+        user.password=await bcrypt.hash(password, 10);
+    }
+    await prisma.user.update({
+      where:{
+        email:user.email as string
+        },
+       data:{
+        username:user.username as string,
+        email:user.email as string,
+        image:user.image as string,
+        ...(password !=='' && {password:user.password as string} )
+       }
+    })
+    await signIn('credentials',{
+      email:user.email as string,
+      password
+    })
+    return true
+  } catch (error) {
+    return error
+  }
+}
+
+export const getUser=async(email:string)=>{
+  return await prisma.user.findUnique({
+    where:{email},
+    select:{
+      email:true,
+      image:true,
+      username:true
+    }
+  })
 }

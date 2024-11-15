@@ -9,6 +9,7 @@ import { signOut, useSession } from "next-auth/react";
 import { deletAllNotification, getLengthNotification } from "@/actions/notification-action";
 import ShowNotif from "./ShowNotif";
 import NavMobile from "./NavMobile";
+import User from "./User";
 
 const Navbar = () => {
   const { data } = useSession();
@@ -65,6 +66,7 @@ const Navbar = () => {
           <Button variant={"outline"}>Write Post</Button>
         </Link>
       )}
+      <User email={data.user.email as string} />
       <button onClick={handleToggleNavMobile} className="sm:hidden block p-1 rounded-full bg-slate-100">
         {showNavMobile ? (
           <X className="w-6 h-6" />

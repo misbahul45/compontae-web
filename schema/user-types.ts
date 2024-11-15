@@ -16,3 +16,11 @@ export type USER={
     image:string
     identity:role
 }
+
+export type UserEdit={
+    username:string,
+    email:string,
+    image?:string,
+    password?:string,
+    confirmPassword?:string
+}

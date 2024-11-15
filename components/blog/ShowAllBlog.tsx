@@ -14,7 +14,6 @@ const ShowAllBlog = () => {
     const [no, setNo] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
-    // Fetch Length All Posts Once
     useEffect(() => {
         const fetchLengthPosts = async () => {
             try {
@@ -58,7 +57,7 @@ const ShowAllBlog = () => {
 
     return (
         <>
-            <div className="mt-8 grid sm:grid-cols-2 gap-4 w-full max-w-6xl mx-auto space-y-4">
+            <div className="grid mt-8 sm:grid-cols-2 gap-4 w-full max-w-6xl mx-auto">
                 {popularPost.map((post) => (
                     <Post
                         key={post.id}

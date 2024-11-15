@@ -1,3 +1,4 @@
+import Comment from '@/components/blog/Comment'
 import Post from '@/components/blog/Post'
 import { Separator } from '@/components/ui/separator'
 import prisma from '@/lib/db'
@@ -58,6 +59,8 @@ const page = async({ params }: PageProps) => {
         <Image src={post?.image as string} alt={post?.title as string} width={500} height={500} className='w-full h-auto max-h-96 rounded-xl object-cover shadow-xl shadow-slate-700/30' />
         <div dangerouslySetInnerHTML={{ __html: post?.description as string }}/>
       </div>
+      <Separator />
+         <Comment />
       <Separator />
       <div className='space-y-4 w-full max-w-3xl mx-auto'>
         <h1 className='lg:text-4xl md:text-3xl text-xl font-bold text-center'>Post Terpopuler</h1>

@@ -17,7 +17,7 @@ const Content = () => {
         helpRef.current?.scrollIntoView({behavior:'smooth'})
     }
   return (
-    <div className='pb-32 pt-12 space-y-8 overflow-hidden'>
+    <div className='pb-32 pt-12 space-y-8 overflow-hidden px-4'>
         <section className="w-full md:h-screen h-96 py-8 bg-[url('/bg-help.jpg')] bg-cover bg-blend-normal space-y-4 flex flex-col justify-center md:pl-12 pl-4">
             <div>
                 <h1 className='md:text-6xl text-3xl font-bold text-white'>Butuh bantuan?</h1>

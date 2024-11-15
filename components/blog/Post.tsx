@@ -21,7 +21,7 @@ interface Props {
 const Post = ({ title, content, image, date,slug }: Props) => {
   const router=useRouter()
   return (
-    <Card className="lg:flex items-start gap-4 px-4 py-4 w-full h-full rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-100">
+    <Card className="lg:flex items-start gap-4 px-4 py-4 w-full h-full rounded-lg overflow-hidden shadow-lg hover:shadow-xl border-2 border-slate-300 transition-all duration-100">
         <Image
           src={image}
           alt={title}
