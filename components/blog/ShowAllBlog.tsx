@@ -86,7 +86,7 @@ const ShowAllBlog = () => {
                 </Button>
             )}
             
-            {isLoading && popularPost.length %6 === 0 && (
+            {(no!==0 && isLoading && popularPost.length %6 === 0 )&& (
                 <p className="flex text-center items-center gap-1 mt-8">
                     <Loader className="animate-spin mr-2 size-12" />
                     <span className="text-xl font-semibold text-gray-400">Loading more...</span>
