@@ -57,10 +57,6 @@ export const updateUser=async(user:UserEdit)=>{
         ...(password !=='' && {password:user.password as string} )
        }
     })
-    await signIn('credentials',{
-      email:user.email as string,
-      password
-    })
     return true
   } catch (error) {
     return error
@@ -68,13 +64,29 @@ export const updateUser=async(user:UserEdit)=>{
 }
 
 export const getUser=async(email:string)=>{
-  return await prisma.user.findUnique({
-    where:{email},
-    select:{
-      id:true,
-      email:true,
-      image:true,
-      username:true
+  console.log(email)
+    try {
+      const user=await prisma.user.findUnique({
+        where:{email},
+        select:{
+          id:true,
+          email:true,
+          image:true,
+          username:true
+        }
+      })
+      return user
+    } catch (error) {
+      console.log(error)
     }
-  })
+}
+
+export const deletUser=async(email:string)=>{
+  try {
+    await prisma.user.delete({
+      where:{email}
+    })
+  } catch (error) {
+    console.log(error)
+  }
 }

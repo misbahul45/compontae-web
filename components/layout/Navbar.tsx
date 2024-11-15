@@ -67,13 +67,6 @@ const Navbar = () => {
         </Link>
       )}
       <User email={data.user.email as string} />
-      <button onClick={handleToggleNavMobile} className="sm:hidden block p-1 rounded-full bg-slate-100">
-        {showNavMobile ? (
-          <X className="w-6 h-6" />
-        ) : (
-          <Menu className="w-6 h-6" />
-        )}
-      </button>
     </div>
   ) : (
     <div className="space-x-4 flex items-center">
@@ -109,7 +102,16 @@ const Navbar = () => {
             </Link>
             <NavMenu />
           </div>
-          {renderComponents}
+          <div className="flex items-center gap-4">
+            {renderComponents}
+            <button onClick={handleToggleNavMobile} className="sm:hidden block p-1 rounded-full bg-slate-100">
+              {showNavMobile ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
         </div>
         <NavMobile showNavMobile={showNavMobile} toggleNavMobile={handleToggleNavMobile} />
       </header>

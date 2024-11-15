@@ -16,7 +16,9 @@ import { Button } from '../ui/button';
 import ShowUser from './ShowUser';
 import FormUser from './FormUser';
 import { USER } from '@/schema/user-types';
-import { getUser } from '@/actions/user-action';
+import { deletUser, getUser } from '@/actions/user-action';
+import toast from 'react-hot-toast';
+import { sleep } from '@/lib/utils';
 
 interface Props {
   email: string;
@@ -26,13 +28,24 @@ const User = ({ email }: Props) => {
   const [edit, setEdit] = React.useState(false);
   const [user, setUser] = React.useState<USER | null>(null);
 
+  const [loading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
     const fetchUser = async () => {
       const userLogin = await getUser(email);
       setUser(userLogin as USER);
     };
     fetchUser();
-  }, [email]);
+  }, [email,edit]);
+
+  const handleDeleteUser=async()=>{
+    prompt('Are you sure you want to delete this user?')
+    setLoading(true)
+    sleep()
+    await deletUser(email)
+    toast.success('Succes delete user')
+    setLoading(false)
+  }
 
   return (
     <AlertDialog>
@@ -66,7 +79,10 @@ const User = ({ email }: Props) => {
               </div>
               <div>Account</div>
             </div>
-            <AlertDialogCancel onClick={()=>setEdit(false)} className="w-fit p-2.5 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all duration-100 shadow-lg shadow-black/20">
+            <AlertDialogCancel 
+              onClick={() => setEdit(false)} 
+              className="w-fit p-2.5 rounded-full bg-red-500 text-white hover:bg-red-600 transition-all duration-100 shadow-lg shadow-black/20"
+            >
               <X className="size-6" aria-label="Close" />
             </AlertDialogCancel>
           </AlertDialogTitle>
@@ -75,22 +91,20 @@ const User = ({ email }: Props) => {
           </AlertDialogDescription>
           <div className="text-sm text-muted-foreground transition-all duration-100">
             {user ? (
-              <>
-                {edit ? (
-                  <FormUser
-                    setEdit={setEdit}
-                    username={user.username}
-                    email={email}
-                    image={user.image}
-                  />
-                ) : (
-                  <ShowUser
-                    image={user.image}
-                    username={user.username}
-                    email={email}
-                  />
-                )}
-              </>
+              edit ? (
+                <FormUser
+                  setEdit={setEdit}
+                  username={user.username}
+                  email={email}
+                  image={user.image}
+                />
+              ) : (
+                <ShowUser
+                  image={user.image}
+                  username={user.username}
+                  email={email}
+                />
+              )
             ) : (
               <LoaderIcon className="size-16 animate-spin" />
             )}
@@ -100,10 +114,15 @@ const User = ({ email }: Props) => {
         {!edit && (
           <AlertDialogFooter className="flex md:flex-row flex-col gap-2">
             <Button
+              onClick={handleDeleteUser}
               className="bg-red-500 hover:bg-red-600 text-white transition-all duration-100"
               aria-label="Delete account"
             >
-              Delete
+              {loading?
+                <LoaderIcon className="size-6 animate-spin" />
+                :
+                'Delete account'
+              }
             </Button>
             <Button onClick={() => setEdit(true)} aria-label="Edit account">
               Edit

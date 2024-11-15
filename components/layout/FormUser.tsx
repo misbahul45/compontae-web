@@ -19,6 +19,7 @@ import { LoaderIcon, UserIcon } from 'lucide-react'
 import { UploadButton } from '@/lib/uploadthing'
 import toast from 'react-hot-toast'
 import { updateUser } from '@/actions/user-action'
+import { useRouter } from 'next/navigation'
 
 interface FormUserProps {
     username:string
@@ -30,6 +31,9 @@ interface FormUserProps {
 const FormUser = ({username,email,image, setEdit}:FormUserProps) => {
     const [newImage, setNewImage]=React.useState(image)
     const [loading, setLoading]=React.useState(false)
+
+    const router=useRouter()
+
     const form=useForm({
         mode:"onChange",
         resolver:zodResolver(UserSchema.UserEditSchema),
@@ -49,11 +53,12 @@ const FormUser = ({username,email,image, setEdit}:FormUserProps) => {
   },[newImage])
 
     const onSubmit=async(data:z.infer<typeof UserSchema.UserEditSchema>)=>{
-        setLoading(true)
+      setLoading(true)
        try {
         await updateUser(data)
         toast.success('Succes update user')
         setEdit(false)
+        router.refresh()
        } catch (error) {
         toast.error("error"+error)
        }finally{

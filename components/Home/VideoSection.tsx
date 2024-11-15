@@ -14,7 +14,7 @@ const VideoSection = () => {
                 {videoUrls.map((url, index) => (
                     <iframe
                         key={index}
-                        className='snap-center flex-none rounded-lg shadow-lg h-96 w-[60vw]'
+                        className='snap-center flex-none rounded-lg shadow-lg md:h-96 md:w-[60vw] h-64 w-[75vw]'
                         src={url}
                         title={`YouTube video player ${index + 1}`}
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
