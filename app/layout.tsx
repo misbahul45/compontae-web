@@ -10,6 +10,7 @@ import 'primeicons/primeicons.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/themes/gray.min.css';
+import Chat from "@/components/layout/Chat";
 
 
 export const metadata: Metadata = {
@@ -29,7 +30,10 @@ export default function RootLayout({
       >
         <SessionProvider> 
           <Navbar />
-          <main className="w-full">{children}</main>
+          <main className="w-full">
+            {children}
+            <Chat />
+          </main>
           <Toaster position="bottom-right" reverseOrder={false} />
           <Footer />
         </SessionProvider>

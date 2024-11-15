@@ -23,7 +23,6 @@ const Navbar = () => {
 
   const [lengthNotification, setLengthNotification] = useState<number | null>(null);
 
-
   useEffect(() => {
     const fetchNotificationLength = async () => {
       try {
@@ -69,19 +68,19 @@ const Navbar = () => {
       <User email={data.user.email as string} />
     </div>
   ) : (
-    <div className="space-x-4 flex items-center">
+    <div className="space-x-2 flex items-center">
       <Link
         href={"/register"}
         className="md:px-4 md:py-2 px-2 py-1 md:text-md text-sm rounded bg-green-500 text-slate-100 font-bold hover:bg-green-600 flex items-center gap-2 shadow-lg shadow-slate-700/40"
       >
-        <UserPlus />
+        <UserPlus className="group-hover:translate-x-0.5 transition-all duration-75 size-4" />
         <span>Join Us</span>
       </Link>
       <Link
         href={"/login"}
         className="md:px-4 md:py-2 px-2 py-1 md:text-md text-sm rounded bg-white border border-slate-300 text-slate-900 font-bold hover:bg-slate-100 flex items-center gap-2 group shadow-lg shadow-slate-700/40"
       >
-        <LogIn className="group-hover:translate-x-0.5 transition-all duration-75" />
+        <LogIn className="group-hover:translate-x-0.5 transition-all duration-75 size-4" />
         <span>Login</span>
       </Link>
     </div>
@@ -102,7 +101,7 @@ const Navbar = () => {
             </Link>
             <NavMenu />
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             {renderComponents}
             <button onClick={handleToggleNavMobile} className="sm:hidden block p-1 rounded-full bg-slate-100">
               {showNavMobile ? (
