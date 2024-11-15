@@ -3,13 +3,13 @@ import React from 'react'
 import ShowComment from './ShowComment'
 
 interface Props {
-    children:Comment[]
+    childrenComment:Comment[]
 }
 
-const SubShowComment = ({ children }: Props) => {
+const SubShowComment = ({ childrenComment }: Props) => {
   return (
     <>
-        {children?.map((comment)=>(
+        {childrenComment?.map((comment)=>(
             <ShowComment key={comment.id} {...comment} />
         ))}
     </>

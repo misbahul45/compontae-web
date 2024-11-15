@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
+import { Form, FormControl, FormField, FormItem } from '../ui/form'
 import { Textarea } from '../ui/textarea'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CommentSchema } from '@/schema/comment-schema'

@@ -3,9 +3,11 @@ import Image from 'next/image'
 import React from 'react'
 import SubShowComment from './SubShowComment'
 import moment from 'moment'
-import { Separator } from '../ui/separator'
-import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
-interface Props extends Comment{}
+import { ChevronRight } from 'lucide-react'
+
+interface Props extends Comment{
+  children?:Comment[]
+}
 const ShowComment = ({body, User, children, updatedAt}:Props) => {
     const { username, image }=User  
     const [showChildren, setShowChildren] = React.useState(false);
@@ -31,7 +33,7 @@ const ShowComment = ({body, User, children, updatedAt}:Props) => {
                 <ChevronRight className={showChildren ? 'rotate-90 transition-all duration-100' : ''} />
             </button>
          </div>
-        {(children && showChildren) && <SubShowComment children={children} />}
+        {(children && showChildren) && <SubShowComment childrenComment={children} />}
     </div>
   )
 }

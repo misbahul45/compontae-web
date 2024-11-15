@@ -50,7 +50,7 @@ const FormUser = ({username,email,image, setEdit}:FormUserProps) => {
     if(newImage){
         form.setValue('image', newImage)
     }
-  },[newImage])
+  },[newImage,form])
 
     const onSubmit=async(data:z.infer<typeof UserSchema.UserEditSchema>)=>{
       setLoading(true)

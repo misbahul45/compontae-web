@@ -49,7 +49,7 @@ const ShowAllBlog = () => {
         };
 
         fetchPopularPost();
-    }, [no]);
+    }, [no, popularPost]);
 
     const handleFetchMorePost = () => {
         setNo((prev) => prev + 1);
