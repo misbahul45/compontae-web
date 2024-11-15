@@ -51,7 +51,6 @@ const page = async({ params }: PageProps) => {
 
   if(!post) return notFound()
 
-  console.log(slug===popularPost[1].slug)
   return (
     <div className='pt-20 pb-28 space-y-4 gap-4 px-4'>
       <div className='w-full max-w-4xl space-y-4 mx-auto'>
@@ -60,7 +59,7 @@ const page = async({ params }: PageProps) => {
         <div dangerouslySetInnerHTML={{ __html: post?.description as string }}/>
       </div>
       <Separator />
-         <Comment />
+         <Comment postId={post.id}  />
       <Separator />
       <div className='space-y-4 w-full max-w-3xl mx-auto'>
         <h1 className='lg:text-4xl md:text-3xl text-xl font-bold text-center'>Post Terpopuler</h1>
