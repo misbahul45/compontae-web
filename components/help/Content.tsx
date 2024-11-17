@@ -3,8 +3,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { HELP_QUESTION, LIST_CONTACT } from '@/constants';
 import { Instagram, Mail, MoveUpRight, Phone } from 'lucide-react'
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useRef } from 'react'
-import FormHelp from './FormHelp';
 
 const icons=[
             <Mail key={1} className='size-6'/>, 
@@ -57,13 +57,13 @@ const Content = () => {
             ></iframe>
         </section>
         <section className='flex lg:flex-row px-4 flex-col w-full max-w-6xl mx-auto gap-8 items-center'>
-            <div className="w-full max-w-xl bg-green-600 p-8 rounded-xl space-y-3 shadow-xl shadow-slate-400/20">
+            <div className="w-full max-w-xl mx-auto bg-green-600/95 backdrop-blur-md p-8 rounded-xl space-y-3 shadow-xl shadow-slate-400/20">
                 <Image src={'/logo.png'} alt="Compontae Logo" width={150} height={150} className='rounded-full mx-auto' />
                 <h1 className='font-bold text-3xl text-center text-white'>Compontae</h1>
                 <h2 className='text-2xl text-white font-semibold'>Jaga Bumi Dengan Tindakan Nyata!!</h2>
                 <p className='text-lg text-white'>Jl. Dr. Ir. H. Soekarno, Mulyorejo, Kec. Mulyorejo, Surabaya, Jawa Timur 60115</p>
                 {LIST_CONTACT.map((contact, index) => (
-                    <div key={index} className='flex gap-4'>
+                    <Link href={contact.link} key={index} className='flex gap-4 hover:bg-green-500 transition-all duration-100 items-center rounded-lg hover:shadow-lg p-2.5'>
                         <div className='p-4 rounded-full bg-white text-black'>
                           {icons[index]}
                         </div>
@@ -71,12 +71,8 @@ const Content = () => {
                             <h1 className='text-lg font-semibold text-white'>{contact.title}</h1>
                             <p className='text-slate-200'>{contact.desc}</p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
-            </div>
-            <div className="flex-1 space-y-4">
-                <h1 className='text-3xl font-bold text-center'>Have a question?</h1>
-                <FormHelp />
             </div>
         </section>
     </div>

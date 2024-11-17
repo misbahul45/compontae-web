@@ -123,17 +123,20 @@ export const LIST_CONTACT=[
     {
         id:1,
         title:"Email",
-        desc:"composplantae567@gmail.com"
+        desc:"composplantae567@gmail.com",
+        link:"mailto:composplantae567@gmail.com"
     },
     {
         id:2,
         title:"Phone",
-        desc:"+62 0856 4920 4151"
+        desc:"+62 0856 4920 4151",
+        link:''
     },
     {
         id:3,
         title:"Instagram",
-        desc:"@compontae.id"
+        desc:"@compontae.id",
+        link:'https://www.instagram.com/compontae.id/'
     }
 ]
 
