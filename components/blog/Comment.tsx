@@ -88,7 +88,7 @@ const Comment = ({ postId }: Props) => {
           <LoaderIcon className='mx-auto text-gray-400 animate-spin lg:w-14 lg:h-14 w-10 h-10' />
         ) : comments.length > 0 ? (
           comments.map((comment) => (
-            <ShowComment key={comment.id} commentId={comment.id} replayId={replayId} setReplayId={setReplayId} {...comment} />
+            <ShowComment key={comment.id} commentId={comment.id} setReplayId={setReplayId} {...comment} />
           ))
         ) : (
           <div className='text-center'>
