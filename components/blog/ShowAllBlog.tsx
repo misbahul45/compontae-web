@@ -46,7 +46,7 @@ const ShowAllBlog = () => {
         };
 
         fetchPosts();
-    }, [no]);
+    }, [no, isLoading]);
 
     const handleFetchMorePost = () => {
         if (post.length < lengthPosts) {

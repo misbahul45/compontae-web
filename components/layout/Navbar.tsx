@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { BellIcon, LogIn, Menu, UserPlus, X } from "lucide-react";
+import { LogIn, Menu, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavMenu from "./NavMenu";

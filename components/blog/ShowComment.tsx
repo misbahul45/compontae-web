@@ -4,15 +4,13 @@ import React from 'react'
 import SubShowComment from './SubShowComment'
 import moment from 'moment'
 import { MessageCircle } from 'lucide-react'
-import { Separator } from '../ui/separator'
 
 interface Props extends Comment{
   commentId:string
   children?:Comment[]
-  replayId:string
   setReplayId:React.Dispatch<React.SetStateAction<string>>
 }
-const ShowComment = ({ commentId, body, User, children, updatedAt, replayId, setReplayId}:Props) => {
+const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId}:Props) => {
     const { username, image }=User  
     const [showChildren, setShowChildren] = React.useState(false);
   return (
