@@ -9,7 +9,7 @@ import { Button } from "../ui/button";
 const LIMIT = 6;
 
 const ShowAllBlog = () => {
-    const [popularPost, setPopularPost] = useState<PostSchema[]>([]);
+    const [post, setPost] = useState<PostSchema[]>([]);
     const [lengthPosts, setLengthPosts] = useState(0);
     const [no, setNo] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,20 +27,17 @@ const ShowAllBlog = () => {
     }, []);
 
     useEffect(() => {
-        const fetchPopularPost = async () => {
+        const fetchPosts = async () => {
+            if (isLoading) return;
             setIsLoading(true);
             try {
                 const posts = await getPostsByPublishedAt({ no, limit: LIMIT });
                 if (posts && posts.length > 0) {
-                    const uniquePosts = posts.filter(
-                        (post) => !popularPost.some((p) => p.id === post.id)
-                    );
-                    setPopularPost((prev) => {
-                        const allPosts = [...prev, ...uniquePosts];
+                    setPost((prev) => {
+                        const allPosts = [...prev, ...posts];
                         const postMap = new Map(allPosts.map((post) => [post.id, post]));
-                        const uniquePostsById = Array.from(postMap.values());
-                        return uniquePostsById;
-                    });                    
+                        return Array.from(postMap.values());
+                    });
                 }
             } catch (error) {
                 console.error("Failed to fetch posts:", error);
@@ -48,17 +45,19 @@ const ShowAllBlog = () => {
             setIsLoading(false);
         };
 
-        fetchPopularPost();
-    }, [no, popularPost]);
+        fetchPosts();
+    }, [no]);
 
     const handleFetchMorePost = () => {
-        setNo((prev) => prev + 1);
+        if (post.length < lengthPosts) {
+            setNo((prev) => prev + 1);
+        }
     };
 
     return (
         <>
             <div className="grid mt-8 sm:grid-cols-2 gap-4 w-full max-w-6xl mx-auto">
-                {popularPost.map((post) => (
+                {post.map((post) => (
                     <Post
                         key={post.id}
                         title={post.title}
@@ -68,7 +67,7 @@ const ShowAllBlog = () => {
                         image={post.image}
                     />
                 ))}
-                {isLoading && popularPost.length === 0 && (
+                {isLoading && post.length === 0 && (
                     <p className="flex text-center items-center gap-1 mt-12">
                         <Loader className="animate-spin mr-2 size-12" />
                         <span className="text-2xl font-semibold text-gray-400">Loading...</span>
@@ -76,7 +75,7 @@ const ShowAllBlog = () => {
                 )}
             </div>
 
-            {popularPost.length < lengthPosts && !isLoading && (
+            {post.length < lengthPosts && !isLoading && (
                 <Button
                     onClick={handleFetchMorePost}
                     variant={"outline"}
@@ -85,8 +84,8 @@ const ShowAllBlog = () => {
                     Fetch more
                 </Button>
             )}
-            
-            {(no!==0 && isLoading && popularPost.length %6 === 0 )&& (
+
+            {no !== 0 && isLoading && post.length % LIMIT === 0 && (
                 <p className="flex text-center items-center gap-1 mt-8">
                     <Loader className="animate-spin mr-2 size-12" />
                     <span className="text-xl font-semibold text-gray-400">Loading more...</span>

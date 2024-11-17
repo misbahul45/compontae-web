@@ -14,7 +14,6 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { createPost } from '@/actions/post-action';
 import Editor from '@/components/blog/Editor';
-import { createNotification } from '@/actions/notification-action';
 import { LoaderIcon, Plus } from 'lucide-react';
 import { sleep } from '@/lib/utils';
 import { Button } from '../ui/button';
@@ -43,7 +42,6 @@ const CreateBlog = () => {
           toast.error('Failed to create post');
           return;
         }
-        await createNotification('Create Post', `Membuat post ${title}`);
         toast.success('Post created successfully!');
         setDescription('');
         setTitle('');

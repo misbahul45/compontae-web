@@ -28,18 +28,18 @@ const Comment = ({ postId }: Props) => {
   const [user, setUser] = React.useState<UserLogin | null>(null)
   const [loading, setLoading] = React.useState(false)
   const [sendMessage, setSendMessage] = React.useState(false)
+  const [replayId, setReplayId] = React.useState('')
 
   const fetchComments = React.useCallback(async () => {
-    setLoading(true)
+    if (!postId) return
     try {
       const fetchedComments = await getAllComments(postId)
       setComments(fetchedComments as CommentType[] || [])
     } catch (error) {
       console.error('Failed to fetch comments:', error)
-    } finally {
-      setLoading(false)
     }
   }, [postId])
+
 
   const fetchUser = React.useCallback(async () => {
     if (!email) return
@@ -52,12 +52,20 @@ const Comment = ({ postId }: Props) => {
   }, [email])
 
   React.useEffect(() => {
-    fetchComments()
-  }, [fetchComments, sendMessage])
+    setLoading(true)
+    const fetchData = async () => {
+      await Promise.all([fetchComments(), fetchUser()])
+      setLoading(false)
+    }
+    fetchData()
+  }, [fetchComments, fetchUser])
 
   React.useEffect(() => {
-    fetchUser()
-  }, [fetchUser])
+    if (sendMessage) {
+      fetchComments()
+      setSendMessage(false)
+    }
+  }, [sendMessage, fetchComments])
 
   return (
     <div className='w-full max-w-3xl mx-auto'>
@@ -65,8 +73,9 @@ const Comment = ({ postId }: Props) => {
         Semua Komentar
       </h1>
 
-      {/* Form for adding new comments */}
       <FormComment 
+        replayId={replayId}
+        setReplayId={setReplayId}
         setSendMessage={setSendMessage} 
         userId={user?.id || ''} 
         postId={postId} 
@@ -74,13 +83,12 @@ const Comment = ({ postId }: Props) => {
 
       <Separator className='my-4' />
 
-      {/* Display loader or comments */}
       <div className='space-y-4'>
         {loading ? (
           <LoaderIcon className='mx-auto text-gray-400 animate-spin lg:w-14 lg:h-14 w-10 h-10' />
         ) : comments.length > 0 ? (
           comments.map((comment) => (
-            <ShowComment key={comment.id} {...comment} />
+            <ShowComment key={comment.id} commentId={comment.id} replayId={replayId} setReplayId={setReplayId} {...comment} />
           ))
         ) : (
           <div className='text-center'>

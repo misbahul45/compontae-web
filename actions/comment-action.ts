@@ -26,8 +26,11 @@ export const getAllComments = async (postId: string) => {
           },
         },
       },
+      
     });
-    return comments;
+
+   const sendBackComment=comments.filter((c)=>c.parentId===null);
+    return sendBackComment;
   };
 
 export const createComment=async({ postId, body, parentId, userId }:{ postId:string,body:string, parentId?:string, userId:string })=>{

@@ -1,62 +1,26 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { BellIcon, LogIn, Menu, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavMenu from "./NavMenu";
 import { signOut, useSession } from "next-auth/react";
-import { deletAllNotification, getLengthNotification } from "@/actions/notification-action";
-import ShowNotif from "./ShowNotif";
 import NavMobile from "./NavMobile";
 import User from "./User";
 
 const Navbar = () => {
   const { data } = useSession();
   const pathName = usePathname();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showNavMobile, setShowNavMobile] = useState<boolean>(false);
 
   const handleToggleNavMobile = () => {
     setShowNavMobile(!showNavMobile);
   }
 
-  const [lengthNotification, setLengthNotification] = useState<number | null>(null);
-
-  useEffect(() => {
-    const fetchNotificationLength = async () => {
-      try {
-        const length = await getLengthNotification();
-        setLengthNotification(length);
-      } catch (error) {
-        console.error("Failed to fetch notification length:", error);
-      }
-    };
-    fetchNotificationLength();
-  }, []);
-
-  const toggleNotification = async() =>{
-    setIsOpen(!isOpen);
-    if(isOpen){
-      setLengthNotification(null)
-      await deletAllNotification()
-    }
-  }
 
   const renderComponents = data?.user ? (
     <div className="space-x-4 flex items-center relative">
-      <button
-        className="p-2 rounded-full bg-gray-100 hover:bg-slate-100 transition-all duration-100 relative"
-        onClick={toggleNotification}
-      >
-        <BellIcon />
-        {lengthNotification !== null && lengthNotification > 0 && (
-          <span className="absolute top-0 right-0 h-4 w-4 text-xs bg-red-500 text-white rounded-full flex items-center justify-center">
-            {lengthNotification}
-          </span>
-        )}
-      </button>
-      {isOpen && <ShowNotif />}
       <Button variant={"destructive"} onClick={() => signOut()} className="sm:block hidden">
         Sign Out
       </Button>

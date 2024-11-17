@@ -3,12 +3,16 @@ import Image from 'next/image'
 import React from 'react'
 import SubShowComment from './SubShowComment'
 import moment from 'moment'
-import { ChevronRight } from 'lucide-react'
+import { MessageCircle } from 'lucide-react'
+import { Separator } from '../ui/separator'
 
 interface Props extends Comment{
+  commentId:string
   children?:Comment[]
+  replayId:string
+  setReplayId:React.Dispatch<React.SetStateAction<string>>
 }
-const ShowComment = ({body, User, children, updatedAt}:Props) => {
+const ShowComment = ({ commentId, body, User, children, updatedAt, replayId, setReplayId}:Props) => {
     const { username, image }=User  
     const [showChildren, setShowChildren] = React.useState(false);
   return (
@@ -28,10 +32,11 @@ const ShowComment = ({body, User, children, updatedAt}:Props) => {
         </div>
         <p className='mt-0.5 ml-0.5'>{body}</p>
          <div className="ml-0.5 flex justify-between items-center">
-            <div className='text-sm text-gray-600 my-1 cursor-pointer hover:text-gray-700 transition-all duration-100'>Replay</div>
-            <button className='block ml-auto w-fit h-fit text-sm text-gray-600 my-1 cursor-pointer hover:text-gray-700 transition-all duration-100' onClick={()=>setShowChildren(!showChildren)}>
-                <ChevronRight className={showChildren ? 'rotate-90 transition-all duration-100' : ''} />
-            </button>
+            <div className='flex items-center gap-1 cursor-pointer hover:text-gray-700 transition-all duration-100' onClick={() => setShowChildren(!showChildren)}>
+                <MessageCircle className='w-4 h-4' />
+                <p className='text-sm'>Replyed ({children?.length})</p>
+            </div>
+            <div onClick={()=>setReplayId(commentId)} className='text-sm text-gray-600 my-1 cursor-pointer hover:text-gray-700 transition-all duration-100'>Replay</div>
          </div>
         {(children && showChildren) && <SubShowComment childrenComment={children} />}
     </div>
