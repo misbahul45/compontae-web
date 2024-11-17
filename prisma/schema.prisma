@@ -19,9 +19,8 @@ model User {
   sessions      Session[]
   Comment       Comment[]
 
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  Notification Notification[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
@@ -74,13 +73,12 @@ model VerificationToken {
 }
 
 model Post {
-  id           String         @id @default(auto()) @map("_id") @db.ObjectId
-  title        String
-  description  String
-  slug         String         @unique
-  image        String
-  published    DateTime       @default(now())
-  notification Notification[]
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  slug        String   @unique
+  image       String
+  published   DateTime @default(now())
 
   Comment Comment[]
 
@@ -102,19 +100,4 @@ model Comment {
   updatedAt DateTime @updatedAt
 
   @@map("comments")
-}
-
-model Notification {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  body      String
-  toUser    User?   @relation(fields: [userEmail], references: [email], onDelete: NoAction, onUpdate: NoAction)
-  userEmail String?
-  post      Post?   @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  postId    String? @db.ObjectId
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("notifications")
 }
