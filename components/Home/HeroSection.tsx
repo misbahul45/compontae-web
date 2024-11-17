@@ -13,7 +13,7 @@ const HeroSection = () => {
         <h2 className='text-center lg:text-3xl md:text-2xl text-md text-white font-bold max-w-5xl mx-auto'>Mari kita jaga alam dengan tindakan nyata, mulai dari mengurangi sampah plastik hingga menanam pohon. Bumi adalah warisan kita, jangan biarkan ia terluka!</h2>
         <div className='flex gap-4 items-center mt-10'>
             <h3 className='md:text-2xl text-sm text-white'>Apa itu Compontae?</h3>
-            <Link href={''} className='px-6 py-2.5 rounded-md bg-green-500 text-white flex items-center hover:bg-green-700 group font-semibold transition-all duration-100'>
+            <Link href={'/product/buy'} className='px-6 py-2.5 rounded-md bg-green-500 text-white flex items-center hover:bg-green-700 group font-semibold transition-all duration-100'>
                 <p>Selengkapnya</p>
                 <MoveUpRight className='ml-1 w-4 group-hover:w-5 transition-all duration-100'/>
             </Link>
