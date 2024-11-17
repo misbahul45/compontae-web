@@ -30,11 +30,13 @@ const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId}:
         </div>
         <p className='mt-0.5 ml-0.5'>{body}</p>
          <div className="ml-0.5 flex justify-between items-center">
-            <div className='flex items-center gap-1 cursor-pointer hover:text-gray-700 transition-all duration-100' onClick={() => setShowChildren(!showChildren)}>
-                <MessageCircle className='w-4 h-4' />
-                <p className='text-sm'>Replyed ({children?.length})</p>
-            </div>
-            <div onClick={()=>setReplayId(commentId)} className='text-sm text-gray-600 my-1 cursor-pointer hover:text-gray-700 transition-all duration-100'>Replay</div>
+            {children && children?.length>0 && (
+              <div className='flex items-center gap-1 cursor-pointer hover:text-gray-700 transition-all duration-100' onClick={() => setShowChildren(!showChildren)}>
+                  <MessageCircle className='w-4 h-4' />
+                  <p className='text-sm'>Replyed ({children?.length})</p>
+              </div>
+            )}
+            <div onClick={()=>setReplayId(commentId)} className='text-sm text-gray-600 my-1 cursor-pointer hover:text-gray-700 transition-all duration-100'>Reply</div>
          </div>
         {(children && showChildren) && <SubShowComment childrenComment={children} />}
     </div>
