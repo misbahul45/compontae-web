@@ -1,5 +1,5 @@
 "use client";
-import { getLengthAllPosts, getPostsByPublishedAt } from "@/actions/post-action";
+import { getLengthAllPosts } from "@/actions/post-action";
 import { Post as PostSchema } from "@/schema/post-types";
 import { useEffect, useState } from "react";
 import Post from "./Post";
