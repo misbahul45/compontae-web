@@ -35,6 +35,10 @@ const page = async({ params }: PageProps) => {
     }
   })
 
+  if(!post){
+    return notFound()
+  }
+
   const popularPost=await prisma.post.findMany({
     where:{
       slug:{

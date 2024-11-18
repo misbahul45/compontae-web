@@ -14,7 +14,7 @@ interface Props{
     list:string
 }
 
-const ShowAllBlog = ({ posts,list }:Props) => {
+const ShowAllBlog = ({ posts, list }:Props) => {
     const [lengthPosts, setLengthPosts] = useState(Number(list));
     const [no, setNo] = useState(1);
     const router=useRouter()
