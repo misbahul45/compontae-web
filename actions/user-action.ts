@@ -19,9 +19,12 @@ export const createUser=async(userRegister:UserRegisterType)=>{
                 password:hashedPassword
             }
         })
-        return user
+        if(user){
+          await signIn('credentials',{ email:userRegister.email, password:userRegister.password })
+          return true
+        }
+        return false
     } catch (error) {
-        console.log(error)  
         return null
     }
 }
@@ -36,8 +39,7 @@ export const loginUser=async(userLogin:UserLoginType)=>{
 
     const user=await signIn('credentials',userLogin)
     if(!user) return null
-
-    return user
+    return true
 }
 
 export const updateUser=async(user:UserEdit)=>{
@@ -64,7 +66,6 @@ export const updateUser=async(user:UserEdit)=>{
 }
 
 export const getUser=async(email:string)=>{
-  console.log(email)
     try {
       const user=await prisma.user.findUnique({
         where:{email},

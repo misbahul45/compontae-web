@@ -12,13 +12,13 @@ export default class UserSchema {
                 .email({ message: "Invalid email" }),
             password: z.string()
                 .min(8, { message: "Password must be at least 8 characters" })
-                .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/, {
-                    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+                .regex(/^(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/, {
+                  message: "Password must include at least one number.",
                 }),
             confirmPassword: z.string()
                 .min(8, { message: "Confirm password must be at least 8 characters" })
-                .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/, {
-                    message: "Confirm password must match the password requirements.",
+                .regex(/^(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/, {
+                  message: "Confirm password must include at least one number.",
                 }),
         })
         .refine((data) => data.password === data.confirmPassword, {
@@ -35,9 +35,10 @@ export default class UserSchema {
             email: z.string().trim().email({ message: "Invalid email" }),
             password: z.string()
                 .min(8, { message: "Password must be at least 8 characters" })
-                .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/, {
-                    message: "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
-                }),
+                .regex(/^(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/, {
+                  message: "Password must include at least one number.",
+                })
+              ,  
         });
     
         static validateUserLogin(data: unknown) {
@@ -57,8 +58,7 @@ export default class UserSchema {
               .string()
               .trim()
               .email({ message: "Invalid email address" })
-              ,
-            
+              ,    
             password: z
               .string()
               .min(8, { message: "Password must be at least 8 characters long" })
