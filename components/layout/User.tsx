@@ -19,6 +19,7 @@ import { USER } from '@/schema/user-types';
 import { deletUser, getUser } from '@/actions/user-action';
 import toast from 'react-hot-toast';
 import { sleep } from '@/lib/utils';
+import { signOut } from 'next-auth/react';
 
 interface Props {
   email: string;
@@ -38,14 +39,21 @@ const User = ({ email }: Props) => {
     fetchUser();
   }, [email,edit]);
 
-  const handleDeleteUser=async()=>{
-    prompt('Are you sure you want to delete this user?')
-    setLoading(true)
-    sleep()
-    await deletUser(email)
-    toast.success('Succes delete user')
-    setLoading(false)
-  }
+  const handleDeleteUser = async () => {
+    if (!confirm('Are you sure you want to delete this user?')) return;
+    
+    setLoading(true);
+    try {
+      await deletUser(email);
+      toast.success('Success delete user');
+      signOut();
+    } catch (error) {
+      toast.error('Failed to delete user');
+    } finally {
+      setLoading(false);
+    }
+  };
+  
 
   return (
     <AlertDialog>

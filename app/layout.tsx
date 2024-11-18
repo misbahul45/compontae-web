@@ -12,7 +12,6 @@ import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/themes/gray.min.css';
 import Chat from "@/components/layout/Chat";
 
-
 export const metadata: Metadata = {
   title: "Compontae Website",
   description: "Compontae adalah sebuah product compos dari limbah rumah tangga",

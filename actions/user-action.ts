@@ -20,17 +20,16 @@ export const createUser=async(userRegister:UserRegisterType)=>{
             }
         })
         if(user){
-          await signIn('credentials',{ email:userRegister.email, password:userRegister.password })
           return true
         }
-        return false
+        throw new Error('User already exist');
     } catch (error) {
-        return null
+        return false
     }
 }
 
-export const comparePassword=async(password:string,userPassword:string)=>{
-    return await bcrypt.compare(password,userPassword)
+export const comparePassword: (password: string, userPassword: string) => Promise<boolean> = async (password: string, userPassword: string) => {
+  return await bcrypt.compare(password, userPassword)
 }
 
 export const loginUser=async(userLogin:UserLoginType)=>{
@@ -78,16 +77,18 @@ export const getUser=async(email:string)=>{
       })
       return user
     } catch (error) {
-      console.log(error)
+      return null
     }
 }
 
 export const deletUser=async(email:string)=>{
   try {
-    await prisma.user.delete({
+    const istrue=await prisma.user.delete({
       where:{email}
     })
+    if(!istrue) throw new Error('User not found')
+    return true
   } catch (error) {
-    console.log(error)
+    return false
   }
 }

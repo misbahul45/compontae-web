@@ -9,9 +9,10 @@ import UserSchema from '@/schema/user-schema'
 import { UserRegisterType } from '@/schema/user-types'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EyeClosed, EyeIcon, Loader2, Lock, Mail, User } from 'lucide-react'
+import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { z } from 'zod'
@@ -19,6 +20,7 @@ import { z } from 'zod'
 const Register = () => {
   const [showPassword, setShowPassword] = React.useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false)
+  const { data }=useSession()
   
   const router = useRouter()
   const { loading, setLoading, setSuccess, setError } = useFormStatus();
@@ -44,7 +46,11 @@ const Register = () => {
       setSuccess(true);
       form.reset()
       toast.success('Registration successful!');
-      router.push('/login')
+      const res = await signIn('credentials', { email:values.email, password:values.password })
+      if (res?.error) {
+        throw new Error(res.error);
+      }
+      router.refresh()
     } catch (e) {
       setError(e as Error);
       toast.error('Something went wrong. Please try again later.');
@@ -52,6 +58,9 @@ const Register = () => {
       setLoading(false);
     }
   };
+  useEffect(()=>{
+    if(data?.user.email) router.push('/blog/1')
+  },[data, router])
 
   return (
     <section className='min-h-screen flex md:flex-row flex-col bg-gradient-to-r pt-12 from-cyan-500 to-green-500 pb-24'> 
