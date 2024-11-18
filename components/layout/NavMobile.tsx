@@ -9,6 +9,8 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion"
 import Link from "next/link"
+import { Button } from "../ui/button"
+import { signOut } from "next-auth/react"
 
 interface Props {
   showNavMobile: boolean
@@ -64,6 +66,7 @@ const NavMobile = ({ showNavMobile, toggleNavMobile }: Props) => {
               </AccordionItem>
             ))}
           </Accordion>
+          <Button variant={'destructive'} onClick={() => signOut()} className="w-full">Sign Out</Button>
         </div>
       </div>
       <button

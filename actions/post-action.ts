@@ -33,7 +33,7 @@ export const getPostsByPublishedAt=async({ no, limit }:{no?:number, limit?:numbe
             orderBy:{
                 published:'desc'
             },
-            skip:(no && no * 10),
+            skip:(no && (no-1) * 10),
             take:limit || 10
         })
         return posts

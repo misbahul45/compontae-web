@@ -5,14 +5,18 @@ import { useEffect, useState } from "react";
 import Post from "./Post";
 import { Loader } from "lucide-react";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 const LIMIT = 6;
 
-const ShowAllBlog = () => {
-    const [post, setPost] = useState<PostSchema[]>([]);
+interface Props{
+    posts:PostSchema[] 
+}
+
+const ShowAllBlog = ({ posts }:Props) => {
     const [lengthPosts, setLengthPosts] = useState(0);
-    const [no, setNo] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
+    const [no, setNo] = useState(1);
+    const router=useRouter()
 
     useEffect(() => {
         const fetchLengthPosts = async () => {
@@ -26,38 +30,18 @@ const ShowAllBlog = () => {
         fetchLengthPosts();
     }, []);
 
-    useEffect(() => {
-        const fetchPosts = async () => {
-            if (isLoading) return;
-            setIsLoading(true);
-            try {
-                const posts = await getPostsByPublishedAt({ no, limit: LIMIT });
-                if (posts && posts.length > 0) {
-                    setPost((prev) => {
-                        const allPosts = [...prev, ...posts];
-                        const postMap = new Map(allPosts.map((post) => [post.id, post]));
-                        return Array.from(postMap.values());
-                    });
-                }
-            } catch (error) {
-                console.error("Failed to fetch posts:", error);
-            }
-            setIsLoading(false);
-        };
-
-        fetchPosts();
-    }, [no]);
-
     const handleFetchMorePost = () => {
-        if (post.length < lengthPosts) {
-            setNo((prev) => prev + 1);
-        }
+        setNo(no+1);
     };
+
+    useEffect(()=>{
+        router.push(`/blog/${no}`)
+    },[no])
 
     return (
         <>
             <div className="grid mt-8 sm:grid-cols-2 gap-4 w-full max-w-6xl mx-auto">
-                {post.map((post) => (
+                {posts.map((post) => (
                     <Post
                         key={post.id}
                         title={post.title}
@@ -67,7 +51,7 @@ const ShowAllBlog = () => {
                         image={post.image}
                     />
                 ))}
-                {isLoading && post.length === 0 && (
+                {posts.length === 0 && (
                     <p className="flex text-center items-center gap-1 mt-12">
                         <Loader className="animate-spin mr-2 size-12" />
                         <span className="text-2xl font-semibold text-gray-400">Loading...</span>
@@ -75,7 +59,7 @@ const ShowAllBlog = () => {
                 )}
             </div>
 
-            {post.length < lengthPosts && !isLoading && (
+            {posts.length < lengthPosts && (
                 <Button
                     onClick={handleFetchMorePost}
                     variant={"outline"}
@@ -85,7 +69,7 @@ const ShowAllBlog = () => {
                 </Button>
             )}
 
-            {no !== 0 && isLoading && post.length % LIMIT === 0 && (
+            {no !== 0 && posts.length % LIMIT === 0 && (
                 <p className="flex text-center items-center gap-1 mt-8">
                     <Loader className="animate-spin mr-2 size-12" />
                     <span className="text-xl font-semibold text-gray-400">Loading more...</span>

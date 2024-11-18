@@ -49,7 +49,7 @@ const Login = () => {
 
   useEffect(()=>{
     if(data?.user){
-      router.push('/blog')
+      router.push('/blog/1')
     }
   },[loading, data, router])
 

@@ -383,7 +383,7 @@ export const benefitsOfCompotae = [
     },
     {
       title: "Resource",
-      href: "/blog",
+      href: "/blog/1",
     },
     {
       title: "Bantuan",
