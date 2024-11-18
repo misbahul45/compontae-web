@@ -54,7 +54,7 @@ const page = async({ params }: PageProps) => {
   return (
     <div className='pt-20 pb-28 space-y-4 gap-4 px-4'>
       <div className='w-full max-w-4xl space-y-4 mx-auto'>
-        <h1 className='text-3xl font-bold text-center'>{post?.title}</h1>
+        <h1 className='md:text-3xl text-lg font-bold text-center'>{post?.title}</h1>
         <Image src={post?.image as string} alt={post?.title as string} width={500} height={500} className='w-full h-auto max-h-96 rounded-xl object-cover shadow-xl shadow-slate-700/30' />
         <div dangerouslySetInnerHTML={{ __html: post?.description as string }}/>
       </div>

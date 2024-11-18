@@ -62,18 +62,13 @@ export default class UserSchema {
             password: z
               .string()
               .min(8, { message: "Password must be at least 8 characters long" })
-              .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/, {
-                message:
-                  "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.",
-              })
-              .or(z.literal("")),
-            
+              .regex(/^(?=.*\d)[A-Za-z\d!@#$%^&*]{8,}$/, {
+                message: "Password must include at least one number.",
+              }),              
             confirmPassword: z
               .string()
               .min(8, { message: "Confirm password must be at least 8 characters long" })
-              .or(z.literal(""))
-              ,
-            
+              , 
             image: z.string().or(z.literal("")),
           })
           .refine(
