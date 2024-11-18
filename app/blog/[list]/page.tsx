@@ -16,7 +16,7 @@ const page = async({ params }: Props) => {
   return (
     <div className='w-full pt-16 pb-28 md:px-8 px-2 overflow-hidden'>
       <Carrousel />
-      <ShowAllBlog posts={posts as Post[]} />
+      <ShowAllBlog posts={posts as Post[]} list={list} />
     </div>
   )
 }

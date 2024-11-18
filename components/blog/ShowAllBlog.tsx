@@ -11,10 +11,11 @@ const LIMIT = 6;
 
 interface Props{
     posts:PostSchema[] 
+    list:string
 }
 
-const ShowAllBlog = ({ posts }:Props) => {
-    const [lengthPosts, setLengthPosts] = useState(0);
+const ShowAllBlog = ({ posts,list }:Props) => {
+    const [lengthPosts, setLengthPosts] = useState(Number(list));
     const [no, setNo] = useState(1);
     const router=useRouter()
 
