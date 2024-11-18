@@ -18,7 +18,6 @@ import FormUser from './FormUser';
 import { USER } from '@/schema/user-types';
 import { deletUser, getUser } from '@/actions/user-action';
 import toast from 'react-hot-toast';
-import { sleep } from '@/lib/utils';
 import { signOut } from 'next-auth/react';
 
 interface Props {
@@ -47,8 +46,8 @@ const User = ({ email }: Props) => {
       await deletUser(email);
       toast.success('Success delete user');
       signOut();
-    } catch (error) {
-      toast.error('Failed to delete user');
+    } catch (e) {
+      toast.error('Failed to delete user '+e);
     } finally {
       setLoading(false);
     }
