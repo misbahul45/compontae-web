@@ -16,7 +16,7 @@ const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId}:
   return (
     <div className='py-1.5 px-4'>
         <div className='flex items-center gap-2'>
-            {image !== '' || image !== null?
+            {image && image!=='' && image!==null?
                   <Image
                   src={image}
                   alt={image+username}
