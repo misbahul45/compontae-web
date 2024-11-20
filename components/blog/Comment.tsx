@@ -77,7 +77,7 @@ const Comment = ({ postId }: Props) => {
         replayId={replayId}
         setReplayId={setReplayId}
         setSendMessage={setSendMessage} 
-        userId={user?.id || ''} 
+        userId={user?.id} 
         postId={postId} 
       />
 

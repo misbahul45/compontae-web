@@ -36,7 +36,11 @@ const Login = () => {
     setLoading(true);
     try {
       await sleep()
-      signIn('credentials', values, )
+      const isValid = await signIn('credentials', values)
+      if(!isValid){
+        toast.error('Invalid email or password');
+        return;
+      }
       form.reset()
       toast.success('Login successful!');
       router.refresh()
@@ -54,7 +58,7 @@ const Login = () => {
   },[loading, data, router])
 
   return (
-    <section className='min-h-screen flex flex-col justify-center bg-blue-600 pb-32'>
+    <section className='min-h-screen flex flex-col justify-center bg-blue-600 pb-32 px-4'>
       <ul className="circles">
 				<li></li>
 				<li></li>
@@ -68,7 +72,7 @@ const Login = () => {
 				<li></li>
 			</ul>
       <Image src="/logo.png" alt="Logo" width={200} height={200} className='block mx-auto' />
-      <h1 className='text-white font-bold text-3xl text-center'><span className='text-green-500'>Ayo!</span> Mari Kita Selamatkan Dunia</h1>
+      <h1 className='text-white font-bold sm:text-3xl text-center text-2xl'><span className='text-green-500'>Ayo!</span> Mari Kita Selamatkan Dunia</h1>
       <div className='mt-4 z-50'>
         <div className='w-full max-w-sm mx-auto p-4 rounded-lg shadow-xl shadow-slate-700/70 bg-white'>
           <div className="flex items-center justify-center">

@@ -13,11 +13,12 @@ import { Button } from "../ui/button"
 import { signOut } from "next-auth/react"
 
 interface Props {
+  email: string
   showNavMobile: boolean
   toggleNavMobile: () => void
 }
 
-const NavMobile = ({ showNavMobile, toggleNavMobile }: Props) => {
+const NavMobile = ({ email,showNavMobile, toggleNavMobile }: Props) => {
   return (
     <div
       className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] bg-slate-100 flex flex-col justify-between ${
@@ -66,7 +67,9 @@ const NavMobile = ({ showNavMobile, toggleNavMobile }: Props) => {
               </AccordionItem>
             ))}
           </Accordion>
-          <Button variant={'destructive'} onClick={() => signOut()} className="w-full">Sign Out</Button>
+          {email &&(
+             <Button variant={'destructive'} onClick={() => signOut()} className="w-full">Sign Out</Button>
+          )}
         </div>
       </div>
       <button

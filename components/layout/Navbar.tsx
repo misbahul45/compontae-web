@@ -76,7 +76,7 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-        <NavMobile showNavMobile={showNavMobile} toggleNavMobile={handleToggleNavMobile} />
+        <NavMobile  email={data?.user?.email as string} showNavMobile={showNavMobile} toggleNavMobile={handleToggleNavMobile} />
       </header>
     );
   }

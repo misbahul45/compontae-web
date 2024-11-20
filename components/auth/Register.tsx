@@ -63,7 +63,7 @@ const Register = () => {
   },[data, router])
 
   return (
-    <section className='min-h-screen flex md:flex-row flex-col bg-gradient-to-r pt-12 from-cyan-500 to-green-500 pb-24'> 
+    <section className='min-h-screen flex md:flex-row flex-col bg-gradient-to-r pt-12 from-cyan-500 to-green-500 pb-24 px-4'> 
       <div className='relative flex-1 px-4 flex flex-col justify-center items-center'>
         <h1 className='text-center font-bold text-2xl text-white'>Mari Bergandengan Tangan untuk Dunia yang Lebih Nyaman dan Bermakna!</h1>
         <Image src="/logo.png" alt="Logo" width={300} height={300} className='block mx-auto' />

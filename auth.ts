@@ -3,6 +3,7 @@ import { JWT as DefaultJWT } from "next-auth/jwt";
 import Credentials from "next-auth/providers/credentials"
 import prisma from "./lib/db";
 import bcrypt from "bcryptjs"
+import toast from "react-hot-toast";
 
 // Extend the User interface
 interface User extends DefaultUser {
@@ -74,7 +75,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           );
       
           if (!isValid) {
-            console.log("Password mismatch");
             return null;
           }
 

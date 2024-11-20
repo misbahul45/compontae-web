@@ -14,7 +14,7 @@ import { useRouter } from 'next/navigation';
 
 interface Props {
   postId: string;
-  userId: string;
+  userId?: string;
   replayId: string;
   setReplayId: React.Dispatch<React.SetStateAction<string>>;
   setSendMessage: React.Dispatch<React.SetStateAction<boolean>>;
