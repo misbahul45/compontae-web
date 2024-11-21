@@ -34,7 +34,7 @@ const Content = () => {
                 {HELP_QUESTION.map((question, index) => (
                     <Accordion type="single" key={index} collapsible className='px-4 py-2 shadow-xl rounded-lg bg-white border-2 border-slate-400'>
                         <AccordionItem value={question.title}>
-                            <AccordionTrigger className='font-semibold text-lg'>{question.title}</AccordionTrigger>
+                            <AccordionTrigger className='font-semibold md:text-lg sm:text-md text-sm'>{question.title}</AccordionTrigger>
                             <AccordionContent className='text-slate-700'>
                                 {question.description}
                             </AccordionContent>

@@ -14,7 +14,7 @@ export type USER={
     username:string
     email:string
     image:string
-    identity:role
+    role:role
 }
 
 export type UserEdit={

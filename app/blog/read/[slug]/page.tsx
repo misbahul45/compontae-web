@@ -12,6 +12,13 @@ interface PageProps {
   }>
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const { slug }=await params
+  return {
+    title: `${slug}`,
+  }
+}
+
 
 const page = async({ params }: PageProps) => {
   const { slug }=await params

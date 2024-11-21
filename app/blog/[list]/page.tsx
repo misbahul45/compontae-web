@@ -1,4 +1,4 @@
-import { getPostsByPublishedAt } from '@/actions/post-action'
+import { getLengthAllPosts, getPostsByPublishedAt } from '@/actions/post-action'
 import Carrousel from '@/components/blog/Carrousel'
 import FormSearch from '@/components/blog/FormSearch'
 import ShowAllBlog from '@/components/blog/ShowAllBlog'
@@ -23,11 +23,13 @@ const page = async({ params, searchParams }: Props) => {
     search,
     no:Number(list),limit:6
   })
+
+  const totalPosts=await getLengthAllPosts() as number
   return (
     <div className='w-full pt-16 pb-28 md:px-8 px-2 overflow-hidden'>
       <Carrousel />
       <FormSearch list={Number(list)} />
-      <ShowAllBlog posts={posts as Post[]} list={list} />
+      <ShowAllBlog lengthPosts={totalPosts} getposts={posts as Post[]} list={Number(list)>1 ? Number(list) : 1} />
     </div>
   )
 }

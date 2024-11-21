@@ -14,7 +14,7 @@ const GuideSection = ({ ref }: Props) => {
         <Accordion type="single" collapsible>
           {komposGuide.sections.map((section, idx) => (
             <AccordionItem key={idx} value={`section-${idx}`}>
-              <AccordionTrigger className="flex justify-between items-center w-full text-lg font-semibold p-4 bg-white rounded-lg shadow-md mb-2 hover:bg-green-100 transition duration-200">
+              <AccordionTrigger className="flex justify-between items-center w-full md:text-lg sm:text-md text-sm font-semibold p-4 bg-white rounded-lg shadow-md mb-2 hover:bg-green-100 transition duration-200">
                 {section.title}
               </AccordionTrigger>
               <AccordionContent className="p-4 my-2 bg-white border rounded-lg shadow-sm">

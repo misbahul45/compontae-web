@@ -32,7 +32,7 @@ const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId, 
             }
             <div>
               <p className='font-semibold text-gray-700 text-sm'><span>{username}</span> {role==='ADMIN' && 'Admin'}</p>
-              <p className='text-xs text-slate-400'>{moment(updatedAt).fromNow()}</p>
+              <p className='text-xs text-slate-400'>{moment(updatedAt).format('DD MMM YYYY')}</p>
             </div>
         </div>
         <p className='mt-0.5 ml-0.5'>{body}</p>

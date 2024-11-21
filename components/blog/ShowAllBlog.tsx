@@ -1,48 +1,29 @@
-"use client";
-import { getLengthAllPosts } from "@/actions/post-action";
 import { Post as PostSchema } from "@/schema/post-types";
-import { useEffect, useState } from "react";
 import Post from "./Post";
-import { Loader } from "lucide-react";
-import { Button } from "../ui/button";
-import { useRouter } from "next/navigation";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+  } from "@/components/ui/pagination"  
+import { Separator } from "../ui/separator";
 
-const LIMIT = 6;
 
 interface Props{
-    posts:PostSchema[] 
-    list:string
+    getposts:PostSchema[] 
+    lengthPosts:number
+    list:number
 }
 
-const ShowAllBlog = ({ posts, list }:Props) => {
-    const [lengthPosts, setLengthPosts] = useState(Number(list));
-    const [no, setNo] = useState(1);
-    const router=useRouter()
-
-    useEffect(() => {
-        const fetchLengthPosts = async () => {
-            try {
-                const totalPosts = await getLengthAllPosts();
-                setLengthPosts(totalPosts);
-            } catch (error) {
-                console.error("Failed to fetch length of posts:", error);
-            }
-        };
-        fetchLengthPosts();
-    }, []);
-
-    const handleFetchMorePost = () => {
-        setNo(no+1);
-    };
-
-    useEffect(()=>{
-        router.push(`/blog/${no}`)
-    },[no])
+const ShowAllBlog = ({ getposts, lengthPosts, list }:Props) => {
 
     return (
         <>
             <div className="grid mt-8 sm:grid-cols-2 gap-4 w-full max-w-6xl mx-auto">
-                {posts.map((post) => (
+                {getposts.map((post) => (
                     <Post
                         key={post.id}
                         title={post.title}
@@ -52,30 +33,25 @@ const ShowAllBlog = ({ posts, list }:Props) => {
                         image={post.image}
                     />
                 ))}
-                {posts.length === 0 && (
-                    <p className="flex text-center items-center gap-1 mt-12">
-                        <Loader className="animate-spin mr-2 size-12" />
-                        <span className="text-2xl font-semibold text-gray-400">Loading...</span>
-                    </p>
-                )}
             </div>
-
-            {posts.length < lengthPosts && (
-                <Button
-                    onClick={handleFetchMorePost}
-                    variant={"outline"}
-                    className="block mt-16 mx-auto px-12"
-                >
-                    Fetch more
-                </Button>
-            )}
-
-            {no !== 0 && posts.length % LIMIT === 0 && (
-                <p className="flex text-center items-center gap-1 mt-8">
-                    <Loader className="animate-spin mr-2 size-12" />
-                    <span className="text-xl font-semibold text-gray-400">Loading more...</span>
-                </p>
-            )}
+            <Separator className="my-8" />
+            <Pagination>
+                <PaginationContent>
+                    <PaginationPrevious href={`/blog/${list-1}`} />
+                    {Array.from({ length: Math.ceil(lengthPosts / 6) })
+                        .map((_, index) => (
+                            <PaginationItem
+                                key={index}
+                            >
+                                <PaginationLink className={list===(index+1) ? "bg-slate-800 text-white" : "hover:bg-slate-500 hover:text-white"} href={`/blog/${index + 1}`}>
+                                    {index + 1}
+                                </PaginationLink>
+                            </PaginationItem>
+                    ))}
+                    <PaginationEllipsis />
+                    <PaginationNext href={`/blog/${list===Math.ceil(lengthPosts / 6) ? list : list+1}`} />
+                </PaginationContent>
+            </Pagination>
         </>
     );
 };

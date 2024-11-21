@@ -33,7 +33,7 @@ export const getPostsByPublishedAt = async ({
     limit,
     type,
     search,
-  }: { no?: number; limit?: number; type?: string; search?: string }) => {
+  }: { no?: number; limit: number; type?: string; search?: string }) => {
     try {
       const whereCondition = {
         ...(search && {
@@ -54,8 +54,8 @@ export const getPostsByPublishedAt = async ({
       const posts = await prisma.post.findMany({
         where: whereCondition,
         orderBy: orderByCondition,
-        skip: no ? (no - 1) * (limit || 10) : undefined,
-        take: limit || 10,
+        take: limit,
+        skip: no ? (no-1) * limit : 0,
       });
       return posts;
     } catch (error) {
@@ -65,8 +65,12 @@ export const getPostsByPublishedAt = async ({
   };
   
   
-
-  
 export const getLengthAllPosts=async()=>{
-    return await prisma.post.count()
+  try {
+    const posts=await prisma.post.count()
+    return posts
+  } catch (error) {
+    console.log(error)
+    return null
+  }
 }
