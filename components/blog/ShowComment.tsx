@@ -9,8 +9,9 @@ interface Props extends Comment{
   commentId:string
   children?:Comment[]
   setReplayId:React.Dispatch<React.SetStateAction<string>>
+  role?:string
 }
-const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId}:Props) => {
+const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId, role}:Props) => {
     const { username, image }=User  
     const [showChildren, setShowChildren] = React.useState(false);
   return (
@@ -30,7 +31,7 @@ const ShowComment = ({ commentId, body, User, children, updatedAt, setReplayId}:
               </div>
             }
             <div>
-              <p className='font-semibold text-gray-700 text-sm'>{username}</p>
+              <p className='font-semibold text-gray-700 text-sm'><span>{username}</span> {role==='ADMIN' && 'Admin'}</p>
               <p className='text-xs text-slate-400'>{moment(updatedAt).fromNow()}</p>
             </div>
         </div>

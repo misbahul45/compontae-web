@@ -72,7 +72,8 @@ export const getUser=async(email:string)=>{
           id:true,
           email:true,
           image:true,
-          username:true
+          username:true,
+          role:true
         }
       })
       return user
