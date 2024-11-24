@@ -129,8 +129,8 @@ export const LIST_CONTACT=[
     {
         id:2,
         title:"Phone",
-        desc:"+62 0856 4920 4151",
-        link:''
+        desc:"+62 8133 351 3901",
+        link:'https://wa.me/+6281333513901'
     },
     {
         id:3,

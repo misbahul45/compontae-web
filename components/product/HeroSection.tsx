@@ -18,7 +18,7 @@ const HeroSection = ({ ref }: Props) => {
 
                 <p>💬 Yuk, beralih ke pertanian organik yang lebih baik dengan <b>Compontae!</b> Kesehatan tanah, hasil panen melimpah!</p>
             </div>
-            <button onClick={()=>router.push('')} ref={ref} className='px-4 py-2 bg-green-700 w-fit rounded-lg text-white font-semibold shadow-xl shadow-slate-800/20 hover:scale-105 hover:bg-green-900 transition-all duration-100'>
+            <button onClick={()=>router.push('https://wa.me/+6281333513901')} ref={ref} className='px-4 py-2 bg-green-700 w-fit rounded-lg text-white font-semibold shadow-xl shadow-slate-800/20 hover:scale-105 hover:bg-green-900 transition-all duration-100'>
                 Buy Product
             </button>
         </div>
