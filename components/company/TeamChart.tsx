@@ -43,8 +43,8 @@ export default function TeamChart() {
             {
               label: 'Pembuatan Produk',
               expand: true,
-              data: 'https://utfs.io/f/L7c2JRqY80pwazqJBu2WcCwaURSiLsKVODv8jkhfQPlATYHd',
-              img: '/bimo.jpg'
+              data: 'Bimo Cahyo Pamungkas (186241085)',
+              img: 'https://utfs.io/f/L7c2JRqY80pwazqJBu2WcCwaURSiLsKVODv8jkhfQPlATYHd'
             },
           ]
         },

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { Button } from '../ui/button'
 
 const Footer = () => {
   return (
@@ -35,6 +36,9 @@ const Footer = () => {
                 <ul className='text-lg text-white'>
                     <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'https://wa.me/+6281333513901'}>Whatsapp</Link></li>
                     <li className='text-md hover:text-slate-200 transition-all duration-100'><Link href={'https://www.instagram.com/compontae.id/'}>Instagram</Link></li>
+                    <li>
+                        <Link href={'/responden'} className='bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-sm text-slate-50'>Give Feedback</Link>
+                    </li>
                 </ul>
             </div>
         </div>

@@ -56,7 +56,7 @@ const Content = () => {
                 referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
         </section>
-        <section className='flex lg:flex-row px-4 flex-col w-full max-w-6xl mx-auto gap-8 items-center'>
+        <section className='flex lg:flex-row px-4 flex-col w-full gap-4 max-w-6xl mx-auto items-center'>
             <div className="w-full max-w-xl mx-auto bg-green-600/95 backdrop-blur-md p-8 rounded-xl space-y-3 shadow-xl shadow-slate-400/20">
                 <Image src={'/logo.png'} alt="Compontae Logo" width={150} height={150} className='rounded-full mx-auto' />
                 <h1 className='font-bold text-3xl text-center text-white'>Compontae</h1>
@@ -74,6 +74,7 @@ const Content = () => {
                     </Link>
                 ))}
             </div>
+            <Image src={'/buy-image.jpg'} alt='buy image' width={500} height={500} className='rounded-xl shadow-xl shadow-slate-400/20' />
         </section>
     </div>
   )

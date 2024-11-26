@@ -28,7 +28,7 @@ const COLORS = [
 
 const ChartSampah = () => {
   return (
-    <div style={{ textAlign: 'center' }} className='w-full overflow-x-scroll mx-auto'>
+    <div style={{ textAlign: 'center' }} className='w-full overflow-auto mx-auto'>
       <h2 className='text-xl font-semibold text-center'>Komposisi Sampah Berdasarkan Jenis Sampah</h2>
       <PieChart width={450} height={450} className='mx-auto'>
         <Pie
