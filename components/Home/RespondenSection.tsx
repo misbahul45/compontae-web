@@ -1,14 +1,9 @@
-import prisma from '@/lib/db';
+import { fetchResponden } from '@/actions/respon-action';
 import Image from 'next/image';
 import React from 'react';
 
 const RespondenSection = async () => {
-    const respon = await prisma.survei.findMany({
-        take: 6,
-        orderBy: {
-            createdAt: 'desc',
-        },
-    });
+    const respon = await fetchResponden()
 
     return (
         <div className="pb-12">

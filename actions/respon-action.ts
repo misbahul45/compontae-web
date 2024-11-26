@@ -18,3 +18,17 @@ export const createRespon=async(respon:RespondenSchema)=>{
         }
     }
 }
+
+export const fetchResponden = async () => {
+    try {
+        return await prisma.survei.findMany({
+            take: 6,
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+    } catch (error) {
+        console.error('Error fetching responden:', error);
+        return [];
+    }
+};
