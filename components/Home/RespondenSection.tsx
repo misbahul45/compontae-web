@@ -13,7 +13,7 @@ const RespondenSection = async () => {
     return (
         <div className="pb-12">
             <h1 className="font-extrabold text-center lg:text-5xl sm:text-4xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-cyan-500 to-green-600">
-                It's time to give feedback
+                It&apos;s time to give feedback
             </h1>
             <div className="sm:columns-2 columns-1 w-full max-w-4xl mx-auto mt-8 space-y-4">
                 {respon.length > 0 ? (
