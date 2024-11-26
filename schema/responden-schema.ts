@@ -6,4 +6,9 @@ export const respondenSchema = z.object({
     rating:z.number().min(1).max(5)
 })
 
-export type RespondenSchema = z.infer<typeof respondenSchema>
+export type RespondenSchema ={
+    name:string
+    respon:string
+    rating:number
+    image:string
+}

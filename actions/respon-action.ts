@@ -8,7 +8,8 @@ export const createRespon=async(respon:RespondenSchema)=>{
             data:{
                 name:respon.name,
                 respon:respon.respon,
-                rating:Number(respon.rating)
+                rating:Number(respon.rating),
+                image:respon.image
             }
         })
         return true

@@ -17,14 +17,8 @@ const RespondenSection = async () => {
                             key={respon.id}
                             className="space-y-2 w-full max-w-sm shadow-2xl p-4 bg-white rounded-md"
                         >
+                            <Image src={respon.image} alt="User" width={200} height={200} className="w-full max-w-sm rounded-lg shadow-xl shadow-slate-700/20" />
                            <div className='flex items-start justify-center gap-4'>
-                            <Image
-                                    src="/respon-image.jpeg" // Update to dynamic path if available
-                                    alt={`Feedback from ${respon.name}`}
-                                    width={50}
-                                    height={50}
-                                    className="rounded-full"
-                                />
                                 <div className="space-y-1">
                                     <h2 className="font-semibold text-lg">{respon.name}</h2>
                                     <div className='flex'>

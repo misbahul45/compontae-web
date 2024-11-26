@@ -2,7 +2,7 @@
 
 import { RespondenSchema, respondenSchema } from '@/schema/responden-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import {
     Form,
@@ -25,6 +25,10 @@ import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
 import { createRespon } from '@/actions/respon-action';
 import { sleep } from '@/lib/utils';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+import Image from 'next/image';
+import { UploadDropzone } from '@/lib/uploadthing';
+import { z } from 'zod';
 
 const renderStar = (rating: number) => {
     return Array.from({ length: rating }, (_, index) => (
@@ -35,6 +39,12 @@ const renderStar = (rating: number) => {
 };
 
 const FormResponden = () => {
+    const [image, setImage] = useState<string>('');
+
+    const handleRemoveImage = () => {
+        setImage('');
+    };
+
     const form = useForm({
         resolver: zodResolver(respondenSchema),
         mode: 'onChange',
@@ -45,16 +55,28 @@ const FormResponden = () => {
         },
     });
 
-    const onSubmit = async(data:RespondenSchema) => {
-        await sleep()
-        const result=await createRespon(data);
-        console.log(result)
-        if(!result){
-            toast.error('Error create respon');
+    const onSubmit = async (data: z.infer<typeof respondenSchema>) => {
+        if(!image){
+            toast.error('Please upload an image first');
             return;
         }
-        form.reset()
-        toast.success('Respon created successfully');
+        try {
+            await sleep();
+            const result = await createRespon({
+                ...data,
+                image,
+            });
+
+            if (!result) {
+                throw new Error('Failed to create respon');
+            }
+
+            form.reset(); // Reset form after successful submission
+            setImage(''); // Clear the uploaded image
+            toast.success('Respon created successfully');
+        } catch (error) {
+            toast.error(error instanceof Error ? error.message : 'Error creating respon');
+        }
     };
 
     return (
@@ -63,6 +85,39 @@ const FormResponden = () => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4 w-full max-w-xl mx-auto p-4 rounded-lg border-2 border-gray-200 shadow-xl my-6"
             >
+                <h3 className="text-lg font-semibold mb-4">Original Cover</h3>
+                {image ? (
+                    <div className="space-y-4">
+                        <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
+                            <Image
+                                src={image}
+                                alt="Original cover"
+                                fill
+                                className="object-cover"
+                            />
+                        </AspectRatio>
+                        <button
+                            onClick={handleRemoveImage}
+                            type="button"
+                            className="w-full px-4 py-2 text-sm text-red-600 border border-red-600 rounded-md hover:bg-red-50 transition-colors"
+                        >
+                            Remove Image
+                        </button>
+                    </div>
+                ) : (
+                    <UploadDropzone
+                        className="w-full"
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res:{url:string}[]) => {
+                            setImage(res[0].url);
+                            toast.success('Image uploaded successfully!');
+                        }}
+                        onUploadError={(error: Error) => {
+                            toast.error(error.message);
+                        }}
+                    />
+                )}
+
                 <FormField
                     control={form.control}
                     name="name"
@@ -94,10 +149,7 @@ const FormResponden = () => {
                                 <SelectContent>
                                     {Array.from({ length: 5 }, (_, index) => index + 1).map(
                                         (rating) => (
-                                            <SelectItem
-                                                key={rating}
-                                                value={String(rating)} // Convert to string for compatibility
-                                            >
+                                            <SelectItem key={rating} value={String(rating)}>
                                                 {renderStar(rating)}
                                             </SelectItem>
                                         )
@@ -109,7 +161,6 @@ const FormResponden = () => {
                     )}
                 />
 
-                {/* Response Field */}
                 <FormField
                     control={form.control}
                     name="respon"
@@ -131,7 +182,11 @@ const FormResponden = () => {
                 <Button
                     type="submit"
                     disabled={form.formState.isSubmitting}
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className={`px-4 py-2 rounded ${
+                        form.formState.isSubmitting
+                            ? 'bg-gray-400'
+                            : 'bg-blue-500 hover:bg-blue-600'
+                    } text-white`}
                 >
                     {form.formState.isSubmitting ? 'Loading...' : 'Submit'}
                 </Button>
