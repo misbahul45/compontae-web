@@ -85,7 +85,7 @@ const FormResponden = () => {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4 w-full max-w-xl mx-auto p-4 rounded-lg border-2 border-gray-200 shadow-xl my-6"
             >
-                <h3 className="text-lg font-semibold mb-4">Original Cover</h3>
+                <h3 className="text-lg font-semibold mb-4">image</h3>
                 {image ? (
                     <div className="space-y-4">
                         <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg overflow-hidden">
