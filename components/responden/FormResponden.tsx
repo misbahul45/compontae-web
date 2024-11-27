@@ -71,8 +71,8 @@ const FormResponden = () => {
                 throw new Error('Failed to create respon');
             }
 
-            form.reset(); // Reset form after successful submission
-            setImage(''); // Clear the uploaded image
+            form.reset(); 
+            setImage(''); 
             toast.success('Respon created successfully');
         } catch (error) {
             toast.error(error instanceof Error ? error.message : 'Error creating respon');
