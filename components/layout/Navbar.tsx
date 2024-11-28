@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import { LogIn, Menu, UserPlus, X } from "lucide-react";
+import { LayoutDashboard, LogIn, Menu, UserPlus, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavMenu from "./NavMenu";
@@ -25,9 +25,16 @@ const Navbar = () => {
         Sign Out
       </Button>
       {data?.user.role === "ADMIN" && (
-        <Link href={"/blog/create"} className="sm:block hidden">
-          <Button variant={"outline"}>Write Post</Button>
-        </Link>
+        <>
+          <Link href={"/blog/create"} className="sm:block hidden">
+            <Button variant={"outline"}>Write Post</Button>
+          </Link>
+          <Link href={'/dashboard'}>
+              <Button variant={'ghost'}>
+                <LayoutDashboard />
+              </Button>
+          </Link>
+        </>
       )}
       <User email={data.user.email as string} />
     </div>

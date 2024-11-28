@@ -37,6 +37,8 @@
     "primeicons": "^7.0.0",
     "primereact": "^10.8.4",
     "react": "^18.3.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-d3-cloud": "^1.0.6",
     "react-dom": "^18.3.1",
     "react-froala-wysiwyg": "^4.3.0",
     "react-hook-form": "^7.53.1",
@@ -51,6 +53,9 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/bcryptjs": "^2.4.6",
+    "@types/d3-scale": "^4.0.8",
+    "@types/d3-scale-chromatic": "^3.0.3",
+    "@types/date-fns": "^2.6.3",
     "@types/moment": "^2.13.0",
     "@types/node": "^20",
     "@types/react": "^18.3.12",

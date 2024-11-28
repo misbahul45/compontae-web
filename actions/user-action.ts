@@ -4,6 +4,7 @@ import prisma from "@/lib/db"
 import UserSchema from "@/schema/user-schema"
 import { UserEdit, UserLoginType, UserRegisterType } from "@/schema/user-types"
 import bcrypt from "bcryptjs"
+import { startOfMonth, endOfMonth } from 'date-fns';
 
 export const createUser=async(userRegister:UserRegisterType)=>{
 
@@ -92,4 +93,41 @@ export const deletUser=async(email:string)=>{
   } catch (error) {
     return false
   }
+}
+
+export const fetchDailyUserGrowth = async () => {
+  const startDate = new Date('2024-01-01'); // Tanggal awal analisis
+  const endDate = new Date(); // Tanggal sekarang
+
+  const userGrowth = await prisma.user.groupBy({
+    by: ['createdAt'], // Kelompokkan berdasarkan tanggal
+    _count: {
+      id: true,
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+    where: {
+      createdAt: {
+        gte: startDate, // Mulai dari tanggal tertentu
+        lte: endDate,   // Hingga tanggal tertentu
+      },
+    },
+  });
+
+  const dailyData = userGrowth.reduce((acc: Record<string, number>, entry) => {
+    const day = entry.createdAt.toISOString().slice(0, 10); // Format ke 'YYYY-MM-DD'
+    if (!acc[day]) acc[day] = 0;
+    acc[day] += entry._count.id;
+    return acc;
+  }, {});
+
+  return Object.entries(dailyData).map(([day, count]) => ({
+    day,
+    count,
+  }));
+};
+
+export const getLengthAllUser=async()=>{
+  return await prisma.user.count()
 }
