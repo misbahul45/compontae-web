@@ -10,14 +10,14 @@ const RespondenSection = async () => {
             <h1 className="font-extrabold text-center lg:text-5xl sm:text-4xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-cyan-500 to-green-600">
                 It&apos;s time to give feedback
             </h1>
-            <div className="grid grid-cols-3 w-full max-w-4xl mx-auto mt-8 space-y-4">
+            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full max-w-4xl mx-auto mt-8">
                 {respon.length > 0 ? (
                     respon.map((respon) => (
                         <div
                             key={respon.id}
                             className="space-y-2 w-full max-w-sm shadow-2xl p-4 bg-white rounded-md"
                         >
-                            <Image src={respon.image} alt="User" width={200} height={200} className="w-full h-56 object-cover rounded-lg shadow-xl shadow-slate-700/20" />
+                            <Image src={respon.image} alt="User" width={200} height={200} className="w-full h-48 object-cover rounded-lg shadow-xl shadow-slate-700/20" />
                            <div className='flex items-start justify-center gap-4'>
                                 <div className="space-y-1">
                                     <h2 className="font-semibold text-lg">{respon.name}</h2>
