@@ -1,5 +1,8 @@
 'use client';
 
+import { getLengthAllComment } from '@/actions/comment-action';
+import { getLengthAllPosts } from '@/actions/post-action';
+import { getLengthAllUser } from '@/actions/user-action';
 import { useEffect, useState } from 'react';
 
 const ShowLengthData = () => {
@@ -13,23 +16,20 @@ const ShowLengthData = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [postsRes, usersRes, commentsRes] = await Promise.all([
-          fetch('/api/posts/length'), // Endpoint untuk getLengthAllPosts
-          fetch('/api/users/length'), // Endpoint untuk getLengthAllUser
-          fetch('/api/comments/length'), // Endpoint untuk getLengthAllComment
+        const [lengthPost, lengthUser, lengthComment] = await Promise.all([
+          getLengthAllPosts(),
+          getLengthAllUser(),
+          getLengthAllComment(),
         ]);
 
-        const lengthPost = await postsRes.json();
-        const lengthUser = await usersRes.json();
-        const lengthComment = await commentsRes.json();
 
         setData([
-          { title: 'Post', value: lengthPost },
-          { title: 'User', value: lengthUser },
-          { title: 'Comment', value: lengthComment },
+          { title: 'Post', value: lengthPost as number },
+          { title: 'User', value: lengthUser as number },
+          { title: 'Comment', value: lengthComment as number },
         ]);
       } catch (error) {
-        console.error('Failed to fetch data:', error);
+        console.error('Failed to fetch data:', JSON.stringify(error));
       } finally {
         setLoading(false);
       }
