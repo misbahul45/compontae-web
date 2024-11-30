@@ -1,10 +1,9 @@
-import { getLengthAllComment } from '@/actions/comment-action';
-import { getLengthAllPosts } from '@/actions/post-action';
-import { getLengthAllUser } from '@/actions/user-action';
-const ShowLengthData = async () => {
-  const lengthPost = await getLengthAllPosts();
-  const lengthUser = await getLengthAllUser();
-  const lengthComment = await getLengthAllComment();
+interface Props {
+  lengthPost: number;
+  lengthUser: number;
+  lengthComment: number;
+}
+const ShowLengthData = async ({ lengthComment, lengthPost, lengthUser }:Props) => {
 
   const data = [
     {
