@@ -11,7 +11,7 @@ const BlogSection = async() => {
     limit:4
   })
   return (
-    <section className='mt-8'>
+    <section className='mt-8 px-4'>
         <h1 className='text-center text-green-700 lg:text-4xl md:text-2xl text-xl font-bold mb-6'>Blog Terbaru</h1>
         <Link href={'/blog/1'} className='flex justify-center items-center text-green-700 text-sm font-semibold group'>
           <p className='group-hover:underline'>Lihat Semua Resouce</p>

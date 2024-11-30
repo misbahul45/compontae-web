@@ -24,7 +24,7 @@ const RespondenSection = () => {
                 <h1 className="font-extrabold text-center lg:text-5xl sm:text-4xl text-2xl text-white">
                     Our Feedback
                 </h1>
-                <Marquee gradient={false} className="rounded-2xl py-3 w-full [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+                <Marquee gradient={false} className="rounded-2xl py-3 w-full [mask-image:_linear-gradient(to_right,transparent_0,_black_60px,_black_calc(100%-60px),transparent_100%)]">
                     {respon.map((res) => (
                         <div
                             key={res.id}
@@ -35,7 +35,7 @@ const RespondenSection = () => {
                                 alt="User"
                                 width={200}
                                 height={200}
-                                className="w-full h-32 object-cover rounded-lg shadow-xl shadow-slate-700/20"
+                                className="w-full md:h-32 h-24 object-cover rounded-lg shadow-xl shadow-slate-700/20"
                             />
                             <div className="flex items-start justify-center gap-4">
                                 <div className="space-y-1">
