@@ -2,11 +2,9 @@ import { getLengthAllComment } from '@/actions/comment-action';
 import { getLengthAllPosts } from '@/actions/post-action';
 import { getLengthAllUser } from '@/actions/user-action';
 const ShowLengthData = async () => {
-  const [lengthPost, lengthUser, lengthComment] = await Promise.all([
-    getLengthAllPosts(),
-    getLengthAllUser(),
-    getLengthAllComment(),
-  ]);
+  const lengthPost = await getLengthAllPosts();
+  const lengthUser = await getLengthAllUser();
+  const lengthComment = await getLengthAllComment();
 
   const data = [
     {
