@@ -1,4 +1,5 @@
 import AboutSection from '@/components/Home/AboutSection'
+import BlogSection from '@/components/Home/BlogSection'
 import HeroSection from '@/components/Home/HeroSection'
 import RespondenSection from '@/components/Home/RespondenSection'
 import VideoSection from '@/components/Home/VideoSection'
@@ -12,6 +13,7 @@ const page = () => {
       <AboutSection />
       <VideoSection />
       <RespondenSection />
+      <BlogSection />
     </div>
   )
 }

@@ -107,7 +107,7 @@ const UserAndCommentLineChart = () => {
   };
 
   return (
-    <div className='w-full max-w-2xl mx-auto'>
+    <div className='w-full max-w-4xl mx-auto'>
        <h3 className='text-2xl font-bold mb-4 text-center'>User and Comment Growth</h3>
       <Line data={chartData} options={options} />;
     </div>

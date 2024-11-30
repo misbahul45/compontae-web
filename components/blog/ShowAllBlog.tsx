@@ -14,7 +14,7 @@ import { Separator } from "../ui/separator";
 
 interface Props{
     getposts:PostSchema[] 
-    lengthPosts:number
+    lengthPosts?:number
     list:number
 }
 
@@ -34,24 +34,28 @@ const ShowAllBlog = ({ getposts, lengthPosts, list }:Props) => {
                     />
                 ))}
             </div>
-            <Separator className="my-8" />
-            <Pagination>
-                <PaginationContent>
-                    <PaginationPrevious href={`/blog/${list-1}`} />
-                    {Array.from({ length: Math.ceil(lengthPosts / 6) })
-                        .map((_, index) => (
-                            <PaginationItem
-                                key={index}
-                            >
-                                <PaginationLink className={list===(index+1) ? "bg-slate-800 text-white" : "hover:bg-slate-500 hover:text-white"} href={`/blog/${index + 1}`}>
-                                    {index + 1}
-                                </PaginationLink>
-                            </PaginationItem>
-                    ))}
-                    <PaginationEllipsis />
-                    <PaginationNext href={`/blog/${list===Math.ceil(lengthPosts / 6) ? list : list+1}`} />
-                </PaginationContent>
-            </Pagination>
+            {lengthPosts && (
+                <>
+                    <Separator className="my-8" />
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationPrevious href={`/blog/${list-1}`} />
+                            {Array.from({ length: Math.ceil(lengthPosts / 6) })
+                                .map((_, index) => (
+                                    <PaginationItem
+                                        key={index}
+                                    >
+                                        <PaginationLink className={list===(index+1) ? "bg-slate-800 text-white" : "hover:bg-slate-500 hover:text-white"} href={`/blog/${index + 1}`}>
+                                            {index + 1}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                            ))}
+                            <PaginationEllipsis />
+                            <PaginationNext href={`/blog/${list===Math.ceil(lengthPosts / 6) ? list : list+1}`} />
+                        </PaginationContent>
+                    </Pagination>
+                </>
+            )}
         </>
     );
 };

@@ -23,7 +23,6 @@ const processCommentsForWordCloud = async (): Promise<WordData[]> => {
       return [];
     }
 
-
     const allTextComments = comments.map((comment: { body: string }) => comment.body).join(' ');
     const allTextRespon=respon.map((comment: { respon: string }) => comment.respon).join(' ');
 
@@ -82,6 +81,7 @@ const CommentWordCloud = () => {
     random={Math.random}
     fill={(_:unknown, i:string) => schemeCategory10ScaleOrdinal(i)}
     onWordMouseOver={(event, d) => {
+      console.log("Mouse over word:", d.text);
       event.target.style.cursor='pointer';
     }}
   />

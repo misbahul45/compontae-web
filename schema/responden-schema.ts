@@ -7,6 +7,7 @@ export const respondenSchema = z.object({
 })
 
 export type RespondenSchema ={
+    id?:string
     name:string
     respon:string
     rating:number
