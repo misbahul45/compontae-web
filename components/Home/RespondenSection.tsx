@@ -10,7 +10,7 @@ const RespondenSection = async () => {
             <h1 className="font-extrabold text-center lg:text-5xl sm:text-4xl text-2xl bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-cyan-500 to-green-600">
                 It&apos;s time to give feedback
             </h1>
-            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full max-w-4xl mx-auto mt-8">
+            <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  gap-3 w-full max-w-4xl mx-auto mt-8">
                 {respon.length > 0 ? (
                     respon.map((respon) => (
                         <div
