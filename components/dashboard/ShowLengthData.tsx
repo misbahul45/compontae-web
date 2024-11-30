@@ -1,10 +1,9 @@
-interface Props {
-  lengthPost: number;
-  lengthUser: number;
-  lengthComment: number;
-}
-const ShowLengthData = async ({ lengthComment, lengthPost, lengthUser }:Props) => {
+import prisma from "@/lib/db";
 
+const ShowLengthData = async () => {
+  const lengthPost = await prisma.post.count();
+  const lengthUser = await prisma.user.count();
+  const lengthComment = await prisma.comment.count();
   const data = [
     {
       title: 'Post',
