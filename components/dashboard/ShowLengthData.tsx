@@ -1,23 +1,46 @@
-import prisma from "@/lib/db";
+'use client';
 
-const ShowLengthData = async () => {
-  const lengthPost = await prisma.post.count();
-  const lengthUser = await prisma.user.count();
-  const lengthComment = await prisma.comment.count();
-  const data = [
-    {
-      title: 'Post',
-      value: lengthPost,
-    },
-    {
-      title: 'User',
-      value: lengthUser,
-    },
-    {
-      title: 'Comment',
-      value: lengthComment,
-    },
-  ];
+import { useEffect, useState } from 'react';
+
+const ShowLengthData = () => {
+  const [data, setData] = useState([
+    { title: 'Post', value: 0 },
+    { title: 'User', value: 0 },
+    { title: 'Comment', value: 0 },
+  ]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [postsRes, usersRes, commentsRes] = await Promise.all([
+          fetch('/api/posts/length'), // Endpoint untuk getLengthAllPosts
+          fetch('/api/users/length'), // Endpoint untuk getLengthAllUser
+          fetch('/api/comments/length'), // Endpoint untuk getLengthAllComment
+        ]);
+
+        const lengthPost = await postsRes.json();
+        const lengthUser = await usersRes.json();
+        const lengthComment = await commentsRes.json();
+
+        setData([
+          { title: 'Post', value: lengthPost },
+          { title: 'User', value: lengthUser },
+          { title: 'Comment', value: lengthComment },
+        ]);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center text-xl py-8">Loading...</div>;
+  }
 
   return (
     <div className="w-full max-w-4xl px-6 grid gap-8 grid-cols-1 sm:grid-cols-3 mx-auto py-8">
