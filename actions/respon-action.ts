@@ -33,3 +33,17 @@ export const fetchResponden = async () => {
         return [];
     }
 };
+
+export const getTextRespon=async()=>{
+    try {
+        const respon=await prisma.survei.findMany({
+            select:{
+                respon:true
+            }
+        })
+        return respon
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
