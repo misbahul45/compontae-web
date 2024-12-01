@@ -3,10 +3,11 @@ import { getLengthAllPosts } from '@/actions/post-action';
 import { getAllLengthRespon } from '@/actions/respon-action';
 import { getLengthAllUser } from '@/actions/user-action';
 
-export const revalidate = 60
+export const revalidate = 0; // Selalu mengambil data baru tanpa cache
 
 const ShowLengthData = async () => {
   try {
+    // Mengambil semua data secara paralel
     const [lengthPost, lengthUser, lengthComment, lengthResponden] = await Promise.all([
       getLengthAllPosts(),
       getLengthAllUser(),
@@ -22,7 +23,7 @@ const ShowLengthData = async () => {
     ];
 
     return (
-      <div className="w-full max-w-4xl px-6 grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mx-auto py-8">
+      <div className="w-full max-w-5xl px-6 grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto py-8">
         {data.map((item, i) => (
           <div
             key={i}
@@ -35,7 +36,7 @@ const ShowLengthData = async () => {
       </div>
     );
   } catch (error) {
-    console.error('Failed to fetch data:', JSON.stringify(error));
+    console.error('Failed to fetch data:', error);
     return (
       <div className="text-center text-xl py-8 text-red-500">
         Failed to load data.
