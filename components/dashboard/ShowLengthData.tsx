@@ -7,7 +7,6 @@ import { getLengthAllUser } from '@/actions/user-action';
 
 const ShowLengthData = async () => {
   try {
-    // Mengambil semua data secara paralel
     const [lengthPost, lengthUser, lengthComment, lengthResponden] = await Promise.all([
       getLengthAllPosts(),
       getLengthAllUser(),
