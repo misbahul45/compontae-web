@@ -3,7 +3,7 @@ import { getLengthAllPosts } from '@/actions/post-action';
 import { getAllLengthRespon } from '@/actions/respon-action';
 import { getLengthAllUser } from '@/actions/user-action';
 
-export const revalidate = 0; // Selalu mengambil data baru tanpa cache
+
 
 const ShowLengthData = async () => {
   try {
