@@ -47,3 +47,12 @@ export const getTextRespon=async()=>{
         return null
     }
 }
+
+export const getAllLengthRespon=async()=>{
+    try {
+        return await prisma.survei.count()
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}

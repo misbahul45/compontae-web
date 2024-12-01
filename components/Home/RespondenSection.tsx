@@ -1,5 +1,4 @@
 'use client';
-
 import { fetchResponden } from '@/actions/respon-action';
 import { RespondenSchema } from '@/schema/responden-schema';
 import Image from 'next/image';
