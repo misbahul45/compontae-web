@@ -4,6 +4,7 @@ import CommentWordCloud from '@/components/dashboard/worldCloudComment';
 import { Separator } from '@/components/ui/separator';
 
 
+export const revalidate = 60
 const Page = async () => {
   return (
     <div className='pt-20 pb-24'>

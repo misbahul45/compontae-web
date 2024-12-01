@@ -3,8 +3,6 @@ import { getLengthAllPosts } from '@/actions/post-action';
 import { getAllLengthRespon } from '@/actions/respon-action';
 import { getLengthAllUser } from '@/actions/user-action';
 
-
-export const revalidate = 60
 const ShowLengthData = async () => {
   try {
     const [lengthPost, lengthUser, lengthComment, lengthResponden] = await Promise.all([
