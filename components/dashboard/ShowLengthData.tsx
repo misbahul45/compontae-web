@@ -4,7 +4,7 @@ import { getAllLengthRespon } from '@/actions/respon-action';
 import { getLengthAllUser } from '@/actions/user-action';
 
 
-
+export const revalidate = 60
 const ShowLengthData = async () => {
   try {
     const [lengthPost, lengthUser, lengthComment, lengthResponden] = await Promise.all([
@@ -43,5 +43,4 @@ const ShowLengthData = async () => {
     );
   }
 };
-export const dynamic = 'force-dynamic'; 
 export default ShowLengthData;
