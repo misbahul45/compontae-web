@@ -3,7 +3,6 @@ import UserAndCommentBar from '@/components/dashboard/UserAndCommentBar';
 import CommentWordCloud from '@/components/dashboard/worldCloudComment';
 import { Separator } from '@/components/ui/separator';
 
-export const revalidate = 0; 
 
 const Page = async () => {
   return (

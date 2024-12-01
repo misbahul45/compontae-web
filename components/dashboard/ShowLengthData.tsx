@@ -44,5 +44,5 @@ const ShowLengthData = async () => {
     );
   }
 };
-
+export const dynamic = 'force-dynamic'; 
 export default ShowLengthData;
