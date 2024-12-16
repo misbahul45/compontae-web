@@ -52,13 +52,13 @@ export default function TeamChart() {
           label: 'Evaluasi Produk',
           expanded: true,
           data: 'M. Afra Athaillah Marom (151241015)',
-          img: 'https://utfs.io/f/L7c2JRqY80pw2GOB5s1UgZdPEslO1BGatSqCA7NiVujIfWKk',
+          img: '/afra.jpg',
           children: [
             {
               label: 'Promosi & Penjualan',
               expand: true,
               data: 'Putri Fadhilatul Ilmiah (432241020)',
-              img: '/afra.jpg'
+              img: '/putri.jpg'
             },
             {
               label: 'Promosi & Penjualan',
