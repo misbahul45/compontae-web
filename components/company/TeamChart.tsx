@@ -32,7 +32,7 @@ export default function TeamChart() {
           label: 'Alat & Bahan',
           expanded: true,
           data: 'M. Zuhad Mubarok (421241075)',
-          img: '/public/zuzu.jpg',
+          img: '/zuzu.jpg',
           children: [
             {
               label: 'Pembuatan Produk',
