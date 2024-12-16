@@ -26,25 +26,25 @@ export default function TeamChart() {
       label: 'Leader Program',
       expanded: true,
       data: 'Erliana Fatma Irianto (013241029)',
-      img: 'https://utfs.io/f/L7c2JRqY80pwaF3VlC2WcCwaURSiLsKVODv8jkhfQPlATYHd',
+      img: '/erlin.jpg',
       children: [
         {
           label: 'Alat & Bahan',
           expanded: true,
           data: 'M. Zuhad Mubarok (421241075)',
-          img: 'https://utfs.io/f/L7c2JRqY80pw0qSNxGKHfBpvXzW5PbG2ZIu98JQnViqgNOYR',
+          img: '/public/zuzu.jpg',
           children: [
             {
               label: 'Pembuatan Produk',
               expand: true,
               data: 'Misbahul Muttaqin (187241037)',
-              img: 'https://utfs.io/f/L7c2JRqY80pwaCHh1in2WcCwaURSiLsKVODv8jkhfQPlATYH'
+              img: '/takin.jpg'
             },
             {
               label: 'Pembuatan Produk',
               expand: true,
               data: 'Bimo Cahyo Pamungkas (186241085)',
-              img: 'https://utfs.io/f/L7c2JRqY80pwazqJBu2WcCwaURSiLsKVODv8jkhfQPlATYHd'
+              img: '/bimo.jpg'
             },
           ]
         },
@@ -58,13 +58,13 @@ export default function TeamChart() {
               label: 'Promosi & Penjualan',
               expand: true,
               data: 'Putri Fadhilatul Ilmiah (432241020)',
-              img: 'https://utfs.io/f/L7c2JRqY80pwM7Hh2bd3uV2FIxASD6BtcbafdWmgJkOqLhe7'
+              img: '/afra.jpg'
             },
             {
               label: 'Promosi & Penjualan',
               expand: true,
               data: 'Syakila Azalia Fatika (113241141)',
-              img: 'https://utfs.io/f/L7c2JRqY80pwangqs32WcCwaURSiLsKVODv8jkhfQPlATYHd'
+              img: '/syakila.jpg'
             },
           ]
         },
